@@ -1,0 +1,346 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		50FC7E8A1418ECA6009ACCB6 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FC7E891418ECA6009ACCB6 /* Cocoa.framework */; };
+		50FC7E941418ECA6009ACCB6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 50FC7E921418ECA6009ACCB6 /* InfoPlist.strings */; };
+		50FC7E961418ECA6009ACCB6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FC7E951418ECA6009ACCB6 /* main.m */; };
+		50FC7E9A1418ECA6009ACCB6 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 50FC7E981418ECA6009ACCB6 /* Credits.rtf */; };
+		50FC7E9D1418ECA6009ACCB6 /* Dioder_Colour_WellsAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FC7E9C1418ECA6009ACCB6 /* Dioder_Colour_WellsAppDelegate.m */; };
+		50FC7EA01418ECA6009ACCB6 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50FC7E9E1418ECA6009ACCB6 /* MainMenu.xib */; };
+		50FC7EB51418ECFA009ACCB6 /* AMSerialPort.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FC7EAA1418ECFA009ACCB6 /* AMSerialPort.m */; };
+		50FC7EB61418ECFA009ACCB6 /* AMSerialPort_Deprecated.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FC7EAC1418ECFA009ACCB6 /* AMSerialPort_Deprecated.m */; };
+		50FC7EB71418ECFA009ACCB6 /* AMSerialPortAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FC7EAE1418ECFA009ACCB6 /* AMSerialPortAdditions.m */; };
+		50FC7EB81418ECFA009ACCB6 /* AMSerialPortList.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FC7EB01418ECFA009ACCB6 /* AMSerialPortList.m */; };
+		50FC7EB91418ECFA009ACCB6 /* AMSerialPortList_Deprecated.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FC7EB21418ECFA009ACCB6 /* AMSerialPortList_Deprecated.m */; };
+		50FC7EBA1418ECFA009ACCB6 /* AMStandardEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FC7EB41418ECFA009ACCB6 /* AMStandardEnumerator.m */; };
+		50FC7EBC1418ED1D009ACCB6 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FC7EBB1418ED1D009ACCB6 /* IOKit.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		50FC7E851418ECA6009ACCB6 /* Dioder Colour Wells.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dioder Colour Wells.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		50FC7E891418ECA6009ACCB6 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		50FC7E8C1418ECA6009ACCB6 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		50FC7E8D1418ECA6009ACCB6 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		50FC7E8E1418ECA6009ACCB6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		50FC7E911418ECA6009ACCB6 /* Dioder Colour Wells-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Dioder Colour Wells-Info.plist"; sourceTree = "<group>"; };
+		50FC7E931418ECA6009ACCB6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		50FC7E951418ECA6009ACCB6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		50FC7E971418ECA6009ACCB6 /* Dioder Colour Wells-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Dioder Colour Wells-Prefix.pch"; sourceTree = "<group>"; };
+		50FC7E991418ECA6009ACCB6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		50FC7E9B1418ECA6009ACCB6 /* Dioder_Colour_WellsAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Dioder_Colour_WellsAppDelegate.h; sourceTree = "<group>"; };
+		50FC7E9C1418ECA6009ACCB6 /* Dioder_Colour_WellsAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Dioder_Colour_WellsAppDelegate.m; sourceTree = "<group>"; };
+		50FC7E9F1418ECA6009ACCB6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		50FC7EA71418ECFA009ACCB6 /* AMSDKCompatibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSDKCompatibility.h; sourceTree = "<group>"; };
+		50FC7EA81418ECFA009ACCB6 /* AMSerialErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSerialErrors.h; sourceTree = "<group>"; };
+		50FC7EA91418ECFA009ACCB6 /* AMSerialPort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSerialPort.h; sourceTree = "<group>"; };
+		50FC7EAA1418ECFA009ACCB6 /* AMSerialPort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMSerialPort.m; sourceTree = "<group>"; };
+		50FC7EAB1418ECFA009ACCB6 /* AMSerialPort_Deprecated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSerialPort_Deprecated.h; sourceTree = "<group>"; };
+		50FC7EAC1418ECFA009ACCB6 /* AMSerialPort_Deprecated.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMSerialPort_Deprecated.m; sourceTree = "<group>"; };
+		50FC7EAD1418ECFA009ACCB6 /* AMSerialPortAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSerialPortAdditions.h; sourceTree = "<group>"; };
+		50FC7EAE1418ECFA009ACCB6 /* AMSerialPortAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMSerialPortAdditions.m; sourceTree = "<group>"; };
+		50FC7EAF1418ECFA009ACCB6 /* AMSerialPortList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSerialPortList.h; sourceTree = "<group>"; };
+		50FC7EB01418ECFA009ACCB6 /* AMSerialPortList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMSerialPortList.m; sourceTree = "<group>"; };
+		50FC7EB11418ECFA009ACCB6 /* AMSerialPortList_Deprecated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSerialPortList_Deprecated.h; sourceTree = "<group>"; };
+		50FC7EB21418ECFA009ACCB6 /* AMSerialPortList_Deprecated.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMSerialPortList_Deprecated.m; sourceTree = "<group>"; };
+		50FC7EB31418ECFA009ACCB6 /* AMStandardEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMStandardEnumerator.h; sourceTree = "<group>"; };
+		50FC7EB41418ECFA009ACCB6 /* AMStandardEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMStandardEnumerator.m; sourceTree = "<group>"; };
+		50FC7EBB1418ED1D009ACCB6 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		50FC7E821418ECA6009ACCB6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				50FC7EBC1418ED1D009ACCB6 /* IOKit.framework in Frameworks */,
+				50FC7E8A1418ECA6009ACCB6 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		50FC7E7A1418ECA6009ACCB6 = {
+			isa = PBXGroup;
+			children = (
+				50FC7E8F1418ECA6009ACCB6 /* Dioder Colour Wells */,
+				50FC7E881418ECA6009ACCB6 /* Frameworks */,
+				50FC7E861418ECA6009ACCB6 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		50FC7E861418ECA6009ACCB6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				50FC7E851418ECA6009ACCB6 /* Dioder Colour Wells.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		50FC7E881418ECA6009ACCB6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				50FC7EBB1418ED1D009ACCB6 /* IOKit.framework */,
+				50FC7E891418ECA6009ACCB6 /* Cocoa.framework */,
+				50FC7E8B1418ECA6009ACCB6 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		50FC7E8B1418ECA6009ACCB6 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				50FC7E8C1418ECA6009ACCB6 /* AppKit.framework */,
+				50FC7E8D1418ECA6009ACCB6 /* CoreData.framework */,
+				50FC7E8E1418ECA6009ACCB6 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		50FC7E8F1418ECA6009ACCB6 /* Dioder Colour Wells */ = {
+			isa = PBXGroup;
+			children = (
+				50FC7E9B1418ECA6009ACCB6 /* Dioder_Colour_WellsAppDelegate.h */,
+				50FC7E9C1418ECA6009ACCB6 /* Dioder_Colour_WellsAppDelegate.m */,
+				50FC7E9E1418ECA6009ACCB6 /* MainMenu.xib */,
+				50FC7EA61418ECFA009ACCB6 /* AMSerialPort */,
+				50FC7E901418ECA6009ACCB6 /* Supporting Files */,
+			);
+			path = "Dioder Colour Wells";
+			sourceTree = "<group>";
+		};
+		50FC7E901418ECA6009ACCB6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				50FC7E911418ECA6009ACCB6 /* Dioder Colour Wells-Info.plist */,
+				50FC7E921418ECA6009ACCB6 /* InfoPlist.strings */,
+				50FC7E951418ECA6009ACCB6 /* main.m */,
+				50FC7E971418ECA6009ACCB6 /* Dioder Colour Wells-Prefix.pch */,
+				50FC7E981418ECA6009ACCB6 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		50FC7EA61418ECFA009ACCB6 /* AMSerialPort */ = {
+			isa = PBXGroup;
+			children = (
+				50FC7EA71418ECFA009ACCB6 /* AMSDKCompatibility.h */,
+				50FC7EA81418ECFA009ACCB6 /* AMSerialErrors.h */,
+				50FC7EA91418ECFA009ACCB6 /* AMSerialPort.h */,
+				50FC7EAA1418ECFA009ACCB6 /* AMSerialPort.m */,
+				50FC7EAB1418ECFA009ACCB6 /* AMSerialPort_Deprecated.h */,
+				50FC7EAC1418ECFA009ACCB6 /* AMSerialPort_Deprecated.m */,
+				50FC7EAD1418ECFA009ACCB6 /* AMSerialPortAdditions.h */,
+				50FC7EAE1418ECFA009ACCB6 /* AMSerialPortAdditions.m */,
+				50FC7EAF1418ECFA009ACCB6 /* AMSerialPortList.h */,
+				50FC7EB01418ECFA009ACCB6 /* AMSerialPortList.m */,
+				50FC7EB11418ECFA009ACCB6 /* AMSerialPortList_Deprecated.h */,
+				50FC7EB21418ECFA009ACCB6 /* AMSerialPortList_Deprecated.m */,
+				50FC7EB31418ECFA009ACCB6 /* AMStandardEnumerator.h */,
+				50FC7EB41418ECFA009ACCB6 /* AMStandardEnumerator.m */,
+			);
+			name = AMSerialPort;
+			path = ../../AMSerialPort;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		50FC7E841418ECA6009ACCB6 /* Dioder Colour Wells */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 50FC7EA31418ECA6009ACCB6 /* Build configuration list for PBXNativeTarget "Dioder Colour Wells" */;
+			buildPhases = (
+				50FC7E811418ECA6009ACCB6 /* Sources */,
+				50FC7E821418ECA6009ACCB6 /* Frameworks */,
+				50FC7E831418ECA6009ACCB6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Dioder Colour Wells";
+			productName = "Dioder Colour Wells";
+			productReference = 50FC7E851418ECA6009ACCB6 /* Dioder Colour Wells.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		50FC7E7C1418ECA6009ACCB6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "KennettNet Software Limited";
+			};
+			buildConfigurationList = 50FC7E7F1418ECA6009ACCB6 /* Build configuration list for PBXProject "Dioder Colour Wells" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 50FC7E7A1418ECA6009ACCB6;
+			productRefGroup = 50FC7E861418ECA6009ACCB6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				50FC7E841418ECA6009ACCB6 /* Dioder Colour Wells */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		50FC7E831418ECA6009ACCB6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				50FC7E941418ECA6009ACCB6 /* InfoPlist.strings in Resources */,
+				50FC7E9A1418ECA6009ACCB6 /* Credits.rtf in Resources */,
+				50FC7EA01418ECA6009ACCB6 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		50FC7E811418ECA6009ACCB6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				50FC7E961418ECA6009ACCB6 /* main.m in Sources */,
+				50FC7E9D1418ECA6009ACCB6 /* Dioder_Colour_WellsAppDelegate.m in Sources */,
+				50FC7EB51418ECFA009ACCB6 /* AMSerialPort.m in Sources */,
+				50FC7EB61418ECFA009ACCB6 /* AMSerialPort_Deprecated.m in Sources */,
+				50FC7EB71418ECFA009ACCB6 /* AMSerialPortAdditions.m in Sources */,
+				50FC7EB81418ECFA009ACCB6 /* AMSerialPortList.m in Sources */,
+				50FC7EB91418ECFA009ACCB6 /* AMSerialPortList_Deprecated.m in Sources */,
+				50FC7EBA1418ECFA009ACCB6 /* AMStandardEnumerator.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		50FC7E921418ECA6009ACCB6 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				50FC7E931418ECA6009ACCB6 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		50FC7E981418ECA6009ACCB6 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				50FC7E991418ECA6009ACCB6 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		50FC7E9E1418ECA6009ACCB6 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				50FC7E9F1418ECA6009ACCB6 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		50FC7EA11418ECA6009ACCB6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		50FC7EA21418ECA6009ACCB6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		50FC7EA41418ECA6009ACCB6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Dioder Colour Wells/Dioder Colour Wells-Prefix.pch";
+				INFOPLIST_FILE = "Dioder Colour Wells/Dioder Colour Wells-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		50FC7EA51418ECA6009ACCB6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Dioder Colour Wells/Dioder Colour Wells-Prefix.pch";
+				INFOPLIST_FILE = "Dioder Colour Wells/Dioder Colour Wells-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		50FC7E7F1418ECA6009ACCB6 /* Build configuration list for PBXProject "Dioder Colour Wells" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				50FC7EA11418ECA6009ACCB6 /* Debug */,
+				50FC7EA21418ECA6009ACCB6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		50FC7EA31418ECA6009ACCB6 /* Build configuration list for PBXNativeTarget "Dioder Colour Wells" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				50FC7EA41418ECA6009ACCB6 /* Debug */,
+				50FC7EA51418ECA6009ACCB6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 50FC7E7C1418ECA6009ACCB6 /* Project object */;
+}

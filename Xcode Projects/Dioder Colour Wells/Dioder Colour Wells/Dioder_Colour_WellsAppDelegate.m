@@ -95,7 +95,12 @@
     colours[11] = (unsigned char)([rgbChannel4 blueComponent] * 255);
     
     NSData *data = [NSData dataWithBytes:&colours length:sizeof(colours)];
-    [self.port writeData:data error:nil];
+    
+    NSError *error = nil;
+    [self.port writeData:data error:&error];
+    
+    if (error)
+        NSLog(@"[%@ %@]: %@", NSStringFromClass([self class]), NSStringFromSelector(_cmd), error);
 }
 
 @end

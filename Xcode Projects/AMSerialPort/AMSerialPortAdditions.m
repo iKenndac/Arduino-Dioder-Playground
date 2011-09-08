@@ -185,7 +185,7 @@
 	} else {
 		errorCode = kAMSerialErrorNoDataToWrite;
 	}
-	if (error) {
+	if (error && errorCode != kAMSerialErrorNone) {
 		NSDictionary *userInfo = nil;
 		if (bytesWritten > 0) {
 			NSNumber* bytesWrittenNum = [NSNumber numberWithLongLong:bytesWritten];

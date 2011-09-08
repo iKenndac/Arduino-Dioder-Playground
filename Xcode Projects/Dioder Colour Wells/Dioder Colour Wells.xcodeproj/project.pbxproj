@@ -175,7 +175,7 @@
 		50FC7E7C1418ECA6009ACCB6 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				ORGANIZATIONNAME = "KennettNet Software Limited";
+				ORGANIZATIONNAME = "Daniel Kennett";
 			};
 			buildConfigurationList = 50FC7E7F1418ECA6009ACCB6 /* Build configuration list for PBXProject "Dioder Colour Wells" */;
 			compatibilityVersion = "Xcode 3.2";

@@ -68,7 +68,7 @@
         
         if (self.port.available) {
             [self.port open];
-            [self.port setSpeed:9600];
+            [self.port setSpeed:B9600];
         } else if (self.port != nil) {
             self.port = nil;
         }
@@ -87,30 +87,40 @@
 
 -(void)updateColoursOnChannel1:(NSColor *)channel1 channel2:(NSColor *)channel2 channel3:(NSColor *)channel3 channel4:(NSColor *)channel4 {
     
-    unsigned char colours [12];
-    
+    // If you choose a greyscale colour, it won't have red, green or blue components so we defensively convert.
     NSColor *rgbChannel1 = [channel1 colorUsingColorSpace:[NSColorSpace genericRGBColorSpace]];
     NSColor *rgbChannel2 = [channel2 colorUsingColorSpace:[NSColorSpace genericRGBColorSpace]];
     NSColor *rgbChannel3 = [channel3 colorUsingColorSpace:[NSColorSpace genericRGBColorSpace]];
     NSColor *rgbChannel4 = [channel4 colorUsingColorSpace:[NSColorSpace genericRGBColorSpace]];
     
-    colours[0] = (unsigned char)([rgbChannel1 redComponent] * 255);
-    colours[1] = (unsigned char)([rgbChannel1 greenComponent] * 255);
-    colours[2] = (unsigned char)([rgbChannel1 blueComponent] * 255);
+    struct ArduinoDioderControlMessage message;
     
-    colours[3] = (unsigned char)([rgbChannel2 redComponent] * 255);
-    colours[4] = (unsigned char)([rgbChannel2 greenComponent] * 255);
-    colours[5] = (unsigned char)([rgbChannel2 blueComponent] * 255);
+    message.header[0] = kHeaderByte1;
+    message.header[1] = kHeaderByte2;
     
-    colours[6] = (unsigned char)([rgbChannel3 redComponent] * 255);
-    colours[7] = (unsigned char)([rgbChannel3 greenComponent] * 255);
-    colours[8] = (unsigned char)([rgbChannel3 blueComponent] * 255);
+    message.colours[0] = (unsigned char)([rgbChannel1 redComponent] * 255);
+    message.colours[1] = (unsigned char)([rgbChannel1 greenComponent] * 255);
+    message.colours[2] = (unsigned char)([rgbChannel1 blueComponent] * 255);
     
-    colours[9] = (unsigned char)([rgbChannel4 redComponent] * 255);
-    colours[10] = (unsigned char)([rgbChannel4 greenComponent] * 255);
-    colours[11] = (unsigned char)([rgbChannel4 blueComponent] * 255);
+    message.colours[3] = (unsigned char)([rgbChannel2 redComponent] * 255);
+    message.colours[4] = (unsigned char)([rgbChannel2 greenComponent] * 255);
+    message.colours[5] = (unsigned char)([rgbChannel2 blueComponent] * 255);
     
-    NSData *data = [NSData dataWithBytes:&colours length:sizeof(colours)];
+    message.colours[6] = (unsigned char)([rgbChannel3 redComponent] * 255);
+    message.colours[7] = (unsigned char)([rgbChannel3 greenComponent] * 255);
+    message.colours[8] = (unsigned char)([rgbChannel3 blueComponent] * 255);
+    
+    message.colours[9] = (unsigned char)([rgbChannel4 redComponent] * 255);
+    message.colours[10] = (unsigned char)([rgbChannel4 greenComponent] * 255);
+    message.colours[11] = (unsigned char)([rgbChannel4 blueComponent] * 255);
+    
+    unsigned char checksum = 0;
+    for (int i = 0; i < sizeof(message.colours); i++)
+        checksum ^= message.colours[i];
+    
+    message.checksum = checksum;
+    
+    NSData *data = [NSData dataWithBytes:&message length:sizeof(struct ArduinoDioderControlMessage)];
     
     NSError *error = nil;
     [self.port writeData:data error:&error];

@@ -9,6 +9,15 @@
 #import <Cocoa/Cocoa.h>
 #import "AMSerialPort.h"
 
+#define kHeaderByte1 0xBA
+#define kHeaderByte2 0xBE
+
+struct ArduinoDioderControlMessage {
+    unsigned char header[2];
+    unsigned char colours[12];
+    unsigned char checksum;
+};
+
 @interface Dioder_Colour_WellsAppDelegate : NSObject <NSApplicationDelegate> {
     NSWindow *window;
 }

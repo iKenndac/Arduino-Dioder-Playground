@@ -1,6 +1,6 @@
 /*
 
-This simple problem listens for incoming data in 12-byte
+This simple program listens for incoming data in 12-byte
 chunks, then pushes the values of those bytes down the
 analog pins.
 
@@ -9,6 +9,8 @@ random data to the Arduino with this listening, good luck
 getting back in sync!
 
 NOTE: This project requires Arduino Mega.
+DOUBLE NOTE: This "protocol" isn't actually used by the 
+included Xcode projects any more.
 
 */
 

@@ -23,7 +23,17 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     // Insert code here to initialize your application
-    self.ports = [[AMSerialPortList sharedPortList] serialPorts];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(portsChanged:)
+                                                 name:AMSerialPortListDidAddPortsNotification
+                                               object:[AMSerialPortList sharedPortList]];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(portsChanged:)
+                                                 name:AMSerialPortListDidRemovePortsNotification
+                                               object:[AMSerialPortList sharedPortList]];
+    
+    [self portsChanged:nil];
     
     self.channel1Color = [NSColor blackColor];
     self.channel2Color = [NSColor blackColor];
@@ -39,11 +49,17 @@
     
 }
 
+-(void)portsChanged:(NSNotification *)aNotification {
+    self.ports = [[[AMSerialPortList sharedPortList] serialPorts] sortedArrayUsingComparator:^(id a, id b) {
+        return [[a name] caseInsensitiveCompare:[b name]];
+    }];
+}
+
 -(void)applicationWillTerminate:(NSNotification *)notification {
     self.port = nil;
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if ([keyPath isEqualToString:@"port"]) {
         
         id oldPort = [change valueForKey:NSKeyValueChangeOldKey];

@@ -24,5 +24,6 @@
 @property (readwrite, retain, nonatomic) NSColor *channel4Color;
 
 -(void)updateColoursOnChannel1:(NSColor *)channel1 channel2:(NSColor *)channel2 channel3:(NSColor *)channel3 channel4:(NSColor *)channel4;
+-(void)portsChanged:(NSNotification *)aNotification;
 
 @end

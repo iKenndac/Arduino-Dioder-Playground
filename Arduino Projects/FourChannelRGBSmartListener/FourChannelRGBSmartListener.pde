@@ -89,6 +89,14 @@ void loop () {
       for (int i = 0; i < kProtocolBodyLength; i++) {
         analogWrite(i + kChannel1RedPin, receivedMessage[i]);
       }
+      
+      Serial.print("OK");
+      Serial.write(byte(10));
+      
+    } else {
+      
+      Serial.print("FAIL");
+      Serial.write(byte(10));
     }
     
     appearToHaveValidMessage = false;

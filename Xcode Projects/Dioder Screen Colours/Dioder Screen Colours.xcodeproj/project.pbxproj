@@ -1,0 +1,354 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5019E83314226C99007FDF7E /* ArduinoDioderCommunicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5019E83214226C99007FDF7E /* ArduinoDioderCommunicationController.m */; };
+		50DC17AD1421344400DBB89D /* Dioder_Screen_ColoursAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DCE3EE142123D0003A3AEE /* Dioder_Screen_ColoursAppDelegate.m */; };
+		50DCE3DC142123D0003A3AEE /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50DCE3DB142123D0003A3AEE /* Cocoa.framework */; };
+		50DCE3E6142123D0003A3AEE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 50DCE3E4142123D0003A3AEE /* InfoPlist.strings */; };
+		50DCE3E8142123D0003A3AEE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DCE3E7142123D0003A3AEE /* main.m */; };
+		50DCE3EC142123D0003A3AEE /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 50DCE3EA142123D0003A3AEE /* Credits.rtf */; };
+		50DCE3F2142123D1003A3AEE /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50DCE3F0142123D1003A3AEE /* MainMenu.xib */; };
+		50DCE407142123D8003A3AEE /* AMSerialPort.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DCE3FC142123D8003A3AEE /* AMSerialPort.m */; };
+		50DCE408142123D8003A3AEE /* AMSerialPort_Deprecated.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DCE3FE142123D8003A3AEE /* AMSerialPort_Deprecated.m */; };
+		50DCE409142123D8003A3AEE /* AMSerialPortAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DCE400142123D8003A3AEE /* AMSerialPortAdditions.m */; };
+		50DCE40A142123D8003A3AEE /* AMSerialPortList.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DCE402142123D8003A3AEE /* AMSerialPortList.m */; };
+		50DCE40B142123D8003A3AEE /* AMSerialPortList_Deprecated.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DCE404142123D8003A3AEE /* AMSerialPortList_Deprecated.m */; };
+		50DCE40C142123D8003A3AEE /* AMStandardEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DCE406142123D8003A3AEE /* AMStandardEnumerator.m */; };
+		50DCE40E1421246E003A3AEE /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50DCE40D1421246E003A3AEE /* IOKit.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		5019E83114226C99007FDF7E /* ArduinoDioderCommunicationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ArduinoDioderCommunicationController.h; path = ../../ArduinoDioderCommunicationController.h; sourceTree = "<group>"; };
+		5019E83214226C99007FDF7E /* ArduinoDioderCommunicationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ArduinoDioderCommunicationController.m; path = ../../ArduinoDioderCommunicationController.m; sourceTree = "<group>"; };
+		50DCE3D7142123D0003A3AEE /* Dioder Screen Colours.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dioder Screen Colours.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		50DCE3DB142123D0003A3AEE /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		50DCE3DE142123D0003A3AEE /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		50DCE3DF142123D0003A3AEE /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		50DCE3E0142123D0003A3AEE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		50DCE3E3142123D0003A3AEE /* Dioder Screen Colours-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Dioder Screen Colours-Info.plist"; sourceTree = "<group>"; };
+		50DCE3E5142123D0003A3AEE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		50DCE3E7142123D0003A3AEE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		50DCE3E9142123D0003A3AEE /* Dioder Screen Colours-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Dioder Screen Colours-Prefix.pch"; sourceTree = "<group>"; };
+		50DCE3EB142123D0003A3AEE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		50DCE3ED142123D0003A3AEE /* Dioder_Screen_ColoursAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Dioder_Screen_ColoursAppDelegate.h; sourceTree = "<group>"; };
+		50DCE3EE142123D0003A3AEE /* Dioder_Screen_ColoursAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Dioder_Screen_ColoursAppDelegate.m; sourceTree = "<group>"; };
+		50DCE3F1142123D1003A3AEE /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		50DCE3F9142123D8003A3AEE /* AMSDKCompatibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSDKCompatibility.h; sourceTree = "<group>"; };
+		50DCE3FA142123D8003A3AEE /* AMSerialErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSerialErrors.h; sourceTree = "<group>"; };
+		50DCE3FB142123D8003A3AEE /* AMSerialPort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSerialPort.h; sourceTree = "<group>"; };
+		50DCE3FC142123D8003A3AEE /* AMSerialPort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMSerialPort.m; sourceTree = "<group>"; };
+		50DCE3FD142123D8003A3AEE /* AMSerialPort_Deprecated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSerialPort_Deprecated.h; sourceTree = "<group>"; };
+		50DCE3FE142123D8003A3AEE /* AMSerialPort_Deprecated.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMSerialPort_Deprecated.m; sourceTree = "<group>"; };
+		50DCE3FF142123D8003A3AEE /* AMSerialPortAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSerialPortAdditions.h; sourceTree = "<group>"; };
+		50DCE400142123D8003A3AEE /* AMSerialPortAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMSerialPortAdditions.m; sourceTree = "<group>"; };
+		50DCE401142123D8003A3AEE /* AMSerialPortList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSerialPortList.h; sourceTree = "<group>"; };
+		50DCE402142123D8003A3AEE /* AMSerialPortList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMSerialPortList.m; sourceTree = "<group>"; };
+		50DCE403142123D8003A3AEE /* AMSerialPortList_Deprecated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSerialPortList_Deprecated.h; sourceTree = "<group>"; };
+		50DCE404142123D8003A3AEE /* AMSerialPortList_Deprecated.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMSerialPortList_Deprecated.m; sourceTree = "<group>"; };
+		50DCE405142123D8003A3AEE /* AMStandardEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMStandardEnumerator.h; sourceTree = "<group>"; };
+		50DCE406142123D8003A3AEE /* AMStandardEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMStandardEnumerator.m; sourceTree = "<group>"; };
+		50DCE40D1421246E003A3AEE /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		50DCE3D4142123D0003A3AEE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				50DCE40E1421246E003A3AEE /* IOKit.framework in Frameworks */,
+				50DCE3DC142123D0003A3AEE /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		50DCE3CC142123D0003A3AEE = {
+			isa = PBXGroup;
+			children = (
+				50DCE3E1142123D0003A3AEE /* Dioder Screen Colours */,
+				50DCE3DA142123D0003A3AEE /* Frameworks */,
+				50DCE3D8142123D0003A3AEE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		50DCE3D8142123D0003A3AEE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				50DCE3D7142123D0003A3AEE /* Dioder Screen Colours.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		50DCE3DA142123D0003A3AEE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				50DCE40D1421246E003A3AEE /* IOKit.framework */,
+				50DCE3DB142123D0003A3AEE /* Cocoa.framework */,
+				50DCE3DD142123D0003A3AEE /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		50DCE3DD142123D0003A3AEE /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				50DCE3DE142123D0003A3AEE /* AppKit.framework */,
+				50DCE3DF142123D0003A3AEE /* CoreData.framework */,
+				50DCE3E0142123D0003A3AEE /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		50DCE3E1142123D0003A3AEE /* Dioder Screen Colours */ = {
+			isa = PBXGroup;
+			children = (
+				5019E83114226C99007FDF7E /* ArduinoDioderCommunicationController.h */,
+				5019E83214226C99007FDF7E /* ArduinoDioderCommunicationController.m */,
+				50DCE3F8142123D8003A3AEE /* AMSerialPort */,
+				50DCE3ED142123D0003A3AEE /* Dioder_Screen_ColoursAppDelegate.h */,
+				50DCE3EE142123D0003A3AEE /* Dioder_Screen_ColoursAppDelegate.m */,
+				50DCE3F0142123D1003A3AEE /* MainMenu.xib */,
+				50DCE3E2142123D0003A3AEE /* Supporting Files */,
+			);
+			path = "Dioder Screen Colours";
+			sourceTree = "<group>";
+		};
+		50DCE3E2142123D0003A3AEE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				50DCE3E3142123D0003A3AEE /* Dioder Screen Colours-Info.plist */,
+				50DCE3E4142123D0003A3AEE /* InfoPlist.strings */,
+				50DCE3E7142123D0003A3AEE /* main.m */,
+				50DCE3E9142123D0003A3AEE /* Dioder Screen Colours-Prefix.pch */,
+				50DCE3EA142123D0003A3AEE /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		50DCE3F8142123D8003A3AEE /* AMSerialPort */ = {
+			isa = PBXGroup;
+			children = (
+				50DCE3F9142123D8003A3AEE /* AMSDKCompatibility.h */,
+				50DCE3FA142123D8003A3AEE /* AMSerialErrors.h */,
+				50DCE3FB142123D8003A3AEE /* AMSerialPort.h */,
+				50DCE3FC142123D8003A3AEE /* AMSerialPort.m */,
+				50DCE3FD142123D8003A3AEE /* AMSerialPort_Deprecated.h */,
+				50DCE3FE142123D8003A3AEE /* AMSerialPort_Deprecated.m */,
+				50DCE3FF142123D8003A3AEE /* AMSerialPortAdditions.h */,
+				50DCE400142123D8003A3AEE /* AMSerialPortAdditions.m */,
+				50DCE401142123D8003A3AEE /* AMSerialPortList.h */,
+				50DCE402142123D8003A3AEE /* AMSerialPortList.m */,
+				50DCE403142123D8003A3AEE /* AMSerialPortList_Deprecated.h */,
+				50DCE404142123D8003A3AEE /* AMSerialPortList_Deprecated.m */,
+				50DCE405142123D8003A3AEE /* AMStandardEnumerator.h */,
+				50DCE406142123D8003A3AEE /* AMStandardEnumerator.m */,
+			);
+			name = AMSerialPort;
+			path = ../../AMSerialPort;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		50DCE3D6142123D0003A3AEE /* Dioder Screen Colours */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 50DCE3F5142123D1003A3AEE /* Build configuration list for PBXNativeTarget "Dioder Screen Colours" */;
+			buildPhases = (
+				50DCE3D3142123D0003A3AEE /* Sources */,
+				50DCE3D4142123D0003A3AEE /* Frameworks */,
+				50DCE3D5142123D0003A3AEE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Dioder Screen Colours";
+			productName = "Dioder Screen Colours";
+			productReference = 50DCE3D7142123D0003A3AEE /* Dioder Screen Colours.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		50DCE3CE142123D0003A3AEE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = "KennettNet Software Limited";
+			};
+			buildConfigurationList = 50DCE3D1142123D0003A3AEE /* Build configuration list for PBXProject "Dioder Screen Colours" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 50DCE3CC142123D0003A3AEE;
+			productRefGroup = 50DCE3D8142123D0003A3AEE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				50DCE3D6142123D0003A3AEE /* Dioder Screen Colours */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		50DCE3D5142123D0003A3AEE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				50DCE3E6142123D0003A3AEE /* InfoPlist.strings in Resources */,
+				50DCE3EC142123D0003A3AEE /* Credits.rtf in Resources */,
+				50DCE3F2142123D1003A3AEE /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		50DCE3D3142123D0003A3AEE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				50DCE3E8142123D0003A3AEE /* main.m in Sources */,
+				50DCE407142123D8003A3AEE /* AMSerialPort.m in Sources */,
+				50DCE408142123D8003A3AEE /* AMSerialPort_Deprecated.m in Sources */,
+				50DCE409142123D8003A3AEE /* AMSerialPortAdditions.m in Sources */,
+				50DCE40A142123D8003A3AEE /* AMSerialPortList.m in Sources */,
+				50DCE40B142123D8003A3AEE /* AMSerialPortList_Deprecated.m in Sources */,
+				50DCE40C142123D8003A3AEE /* AMStandardEnumerator.m in Sources */,
+				50DC17AD1421344400DBB89D /* Dioder_Screen_ColoursAppDelegate.m in Sources */,
+				5019E83314226C99007FDF7E /* ArduinoDioderCommunicationController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		50DCE3E4142123D0003A3AEE /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				50DCE3E5142123D0003A3AEE /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		50DCE3EA142123D0003A3AEE /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				50DCE3EB142123D0003A3AEE /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		50DCE3F0142123D1003A3AEE /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				50DCE3F1142123D1003A3AEE /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		50DCE3F3142123D1003A3AEE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		50DCE3F4142123D1003A3AEE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		50DCE3F6142123D1003A3AEE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Dioder Screen Colours/Dioder Screen Colours-Prefix.pch";
+				INFOPLIST_FILE = "Dioder Screen Colours/Dioder Screen Colours-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		50DCE3F7142123D1003A3AEE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Dioder Screen Colours/Dioder Screen Colours-Prefix.pch";
+				INFOPLIST_FILE = "Dioder Screen Colours/Dioder Screen Colours-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		50DCE3D1142123D0003A3AEE /* Build configuration list for PBXProject "Dioder Screen Colours" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				50DCE3F3142123D1003A3AEE /* Debug */,
+				50DCE3F4142123D1003A3AEE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		50DCE3F5142123D1003A3AEE /* Build configuration list for PBXNativeTarget "Dioder Screen Colours" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				50DCE3F6142123D1003A3AEE /* Debug */,
+				50DCE3F7142123D1003A3AEE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 50DCE3CE142123D0003A3AEE /* Project object */;
+}

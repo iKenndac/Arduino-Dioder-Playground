@@ -181,7 +181,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0420;
-				ORGANIZATIONNAME = "KennettNet Software Limited";
+				ORGANIZATIONNAME = "Daniel Kennett";
 			};
 			buildConfigurationList = 50DCE3D1142123D0003A3AEE /* Build configuration list for PBXProject "Dioder Screen Colours" */;
 			compatibilityVersion = "Xcode 3.2";

@@ -7,16 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "AMSerialPort.h"
-
-#define kHeaderByte1 0xBA
-#define kHeaderByte2 0xBE
-
-struct ArduinoDioderControlMessage {
-    unsigned char header[2];
-    unsigned char colours[12];
-    unsigned char checksum;
-};
+#import "ArduinoDioderCommunicationController.h"
 
 @interface Dioder_Colour_WellsAppDelegate : NSObject <NSApplicationDelegate> {
     NSWindow *window;
@@ -25,14 +16,13 @@ struct ArduinoDioderControlMessage {
 @property (assign) IBOutlet NSWindow *window;
 
 @property (readwrite, retain, nonatomic) NSArray *ports;
-@property (readwrite, retain, nonatomic) AMSerialPort *port;
+@property (readwrite, retain, nonatomic) ArduinoDioderCommunicationController *commsController;
 
 @property (readwrite, retain, nonatomic) NSColor *channel1Color;
 @property (readwrite, retain, nonatomic) NSColor *channel2Color;
 @property (readwrite, retain, nonatomic) NSColor *channel3Color;
 @property (readwrite, retain, nonatomic) NSColor *channel4Color;
 
--(void)updateColoursOnChannel1:(NSColor *)channel1 channel2:(NSColor *)channel2 channel3:(NSColor *)channel3 channel4:(NSColor *)channel4;
 -(void)portsChanged:(NSNotification *)aNotification;
 
 @end

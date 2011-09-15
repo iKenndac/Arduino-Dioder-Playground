@@ -1331,7 +1331,7 @@
 				<nil key="NSViewClass"/>
 				<nil key="NSUserInterfaceItemIdentifier"/>
 				<object class="NSView" key="NSWindowView" id="439893737">
-					<nil key="NSNextResponder"/>
+					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<object class="NSMutableArray" key="NSSubviews">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1340,6 +1340,7 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{111, 152}, {259, 26}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="420815152"/>
 							<string key="NSReuseIdentifierKey">_NS:179</string>
 							<bool key="NSEnabled">YES</bool>
@@ -1420,6 +1421,8 @@
 							</object>
 							<string key="NSFrame">{{200, 20}, {81, 59}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
+							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:3921</string>
 							<bool key="NSEnabled">YES</bool>
 							<bool key="NSIsBordered">YES</bool>
@@ -1440,6 +1443,7 @@
 							</object>
 							<string key="NSFrame">{{200, 253}, {81, 59}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="506759912"/>
 							<string key="NSReuseIdentifierKey">_NS:3921</string>
 							<bool key="NSEnabled">YES</bool>
@@ -1461,6 +1465,7 @@
 							</object>
 							<string key="NSFrame">{{20, 137}, {81, 59}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="886602978"/>
 							<string key="NSReuseIdentifierKey">_NS:3921</string>
 							<bool key="NSEnabled">YES</bool>
@@ -1482,6 +1487,7 @@
 							</object>
 							<string key="NSFrame">{{379, 137}, {81, 59}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="687543004"/>
 							<string key="NSReuseIdentifierKey">_NS:3921</string>
 							<bool key="NSEnabled">YES</bool>
@@ -1493,6 +1499,8 @@
 						</object>
 					</object>
 					<string key="NSFrameSize">{480, 332}</string>
+					<reference key="NSSuperview"/>
+					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="414751760"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {2560, 1418}}</string>
@@ -2232,23 +2240,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">selectedObject: port</string>
-						<reference key="source" ref="886602978"/>
-						<reference key="destination" ref="976324537"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="886602978"/>
-							<reference key="NSDestination" ref="976324537"/>
-							<string key="NSLabel">selectedObject: port</string>
-							<string key="NSBinding">selectedObject</string>
-							<string key="NSKeyPath">port</string>
-							<reference key="NSPreviousConnector" ref="244582156"/>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">556</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: channel1Color</string>
 						<reference key="source" ref="687543004"/>
 						<reference key="destination" ref="976324537"/>
@@ -2310,6 +2301,23 @@
 						</object>
 					</object>
 					<int key="connectionID">596</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">selectedObject: commsController.port</string>
+						<reference key="source" ref="886602978"/>
+						<reference key="destination" ref="976324537"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="886602978"/>
+							<reference key="NSDestination" ref="976324537"/>
+							<string key="NSLabel">selectedObject: commsController.port</string>
+							<string key="NSBinding">selectedObject</string>
+							<string key="NSKeyPath">commsController.port</string>
+							<reference key="NSPreviousConnector" ref="244582156"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">597</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -4226,7 +4234,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">596</int>
+			<int key="maxID">597</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

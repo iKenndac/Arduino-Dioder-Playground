@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5019E83B142274D3007FDF7E /* ArduinoDioderCommunicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5019E83A142274D3007FDF7E /* ArduinoDioderCommunicationController.m */; };
 		50FC7E8A1418ECA6009ACCB6 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FC7E891418ECA6009ACCB6 /* Cocoa.framework */; };
 		50FC7E941418ECA6009ACCB6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 50FC7E921418ECA6009ACCB6 /* InfoPlist.strings */; };
 		50FC7E961418ECA6009ACCB6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FC7E951418ECA6009ACCB6 /* main.m */; };
@@ -23,6 +24,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5019E839142274D3007FDF7E /* ArduinoDioderCommunicationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ArduinoDioderCommunicationController.h; path = ../../ArduinoDioderCommunicationController.h; sourceTree = "<group>"; };
+		5019E83A142274D3007FDF7E /* ArduinoDioderCommunicationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ArduinoDioderCommunicationController.m; path = ../../ArduinoDioderCommunicationController.m; sourceTree = "<group>"; };
 		50FC7E851418ECA6009ACCB6 /* Dioder Colour Wells.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dioder Colour Wells.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		50FC7E891418ECA6009ACCB6 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		50FC7E8C1418ECA6009ACCB6 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -106,6 +109,8 @@
 		50FC7E8F1418ECA6009ACCB6 /* Dioder Colour Wells */ = {
 			isa = PBXGroup;
 			children = (
+				5019E839142274D3007FDF7E /* ArduinoDioderCommunicationController.h */,
+				5019E83A142274D3007FDF7E /* ArduinoDioderCommunicationController.m */,
 				50FC7E9B1418ECA6009ACCB6 /* Dioder_Colour_WellsAppDelegate.h */,
 				50FC7E9C1418ECA6009ACCB6 /* Dioder_Colour_WellsAppDelegate.m */,
 				50FC7E9E1418ECA6009ACCB6 /* MainMenu.xib */,
@@ -175,6 +180,7 @@
 		50FC7E7C1418ECA6009ACCB6 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastUpgradeCheck = 0420;
 				ORGANIZATIONNAME = "Daniel Kennett";
 			};
 			buildConfigurationList = 50FC7E7F1418ECA6009ACCB6 /* Build configuration list for PBXProject "Dioder Colour Wells" */;
@@ -220,6 +226,7 @@
 				50FC7EB81418ECFA009ACCB6 /* AMSerialPortList.m in Sources */,
 				50FC7EB91418ECFA009ACCB6 /* AMSerialPortList_Deprecated.m in Sources */,
 				50FC7EBA1418ECFA009ACCB6 /* AMStandardEnumerator.m in Sources */,
+				5019E83B142274D3007FDF7E /* ArduinoDioderCommunicationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +346,7 @@
 				50FC7EA51418ECA6009ACCB6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

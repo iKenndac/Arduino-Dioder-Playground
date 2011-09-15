@@ -603,14 +603,11 @@ static int64_t AMMicrosecondsSinceBoot (void)
 	NSLog(@"timeout remaining at end: %qd us (negative means timeout occured!)", remainingTimeout);
 #endif
 	
-	if (error) {
+	if (error && errorCode != kAMSerialErrorNone) {
 		NSMutableDictionary *userInfo = [NSMutableDictionary dictionary];
 		[userInfo setObject:[NSNumber numberWithUnsignedLongLong:bytesRead] forKey:@"bytesRead"];
 		if (underlyingError) {
 			[userInfo setObject:underlyingError forKey:NSUnderlyingErrorKey];
-		}
-		if (errorCode == kAMSerialErrorNone) {
-			[userInfo setObject:[NSNumber numberWithInt:endCode] forKey:@"endCode"];
 		}
 		*error = [NSError errorWithDomain:AMSerialErrorDomain code:errorCode userInfo:userInfo];
 	}

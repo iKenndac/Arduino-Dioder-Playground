@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AMSerialPort.h"
+#import "DKSerialPort.h"
 
 @interface ArduinoDioderCommunicationController : NSObject
 
-@property (readwrite, retain) AMSerialPort *port;
+@property (readwrite, retain) DKSerialPort *port;
 
 -(void)pushColorsToChannel1:(NSColor *)channel1 
                    channel2:(NSColor *)channel2

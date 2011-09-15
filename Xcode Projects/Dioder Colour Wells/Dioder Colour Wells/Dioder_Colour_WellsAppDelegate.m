@@ -7,8 +7,6 @@
 //
 
 #import "Dioder_Colour_WellsAppDelegate.h"
-#import "AMSerialPortAdditions.h"
-#import "AMSerialPortList.h"
 
 @implementation Dioder_Colour_WellsAppDelegate
 
@@ -25,13 +23,8 @@
     // Insert code here to initialize your application
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(portsChanged:)
-                                                 name:AMSerialPortListDidAddPortsNotification
-                                               object:[AMSerialPortList sharedPortList]];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(portsChanged:)
-                                                 name:AMSerialPortListDidRemovePortsNotification
-                                               object:[AMSerialPortList sharedPortList]];
+                                                 name:DKSerialPortsDidChangeNotification
+                                               object:nil];
     
     [self portsChanged:nil];
     
@@ -50,12 +43,15 @@
 }
 
 -(void)portsChanged:(NSNotification *)aNotification {
-    self.ports = [[[AMSerialPortList sharedPortList] serialPorts] sortedArrayUsingComparator:^(id a, id b) {
+    self.ports = [[DKSerialPort availableSerialPorts] sortedArrayUsingComparator:^(id a, id b) {
         return [[a name] caseInsensitiveCompare:[b name]];
     }];
 }
 
 -(void)applicationWillTerminate:(NSNotification *)notification {
+    [[NSNotificationCenter defaultCenter] removeObserver:self 
+                                                    name:DKSerialPortsDidChangeNotification
+                                                  object:nil];
     self.commsController = nil;
 }
 

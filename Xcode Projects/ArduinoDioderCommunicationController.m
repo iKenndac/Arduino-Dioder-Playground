@@ -7,8 +7,6 @@
 //
 
 #import "ArduinoDioderCommunicationController.h"
-#import "AMSerialPortAdditions.h"
-#import "AMSerialPortList.h"
 
 #define kHeaderByte1 0xBA
 #define kHeaderByte2 0xBE
@@ -62,21 +60,16 @@ struct ArduinoDioderControlMessage {
         if (oldPort != [NSNull null])
             [oldPort close];
         
-        if (self.port.available) {
-            
-            [self.port setSpeed:B9600];
-            [self.port setParity:kAMSerialParityNone];
-            [self.port setStopBits:kAMSerialStopBitsOne];
-            [self.port setDataBits:8];
-            [self.port setReadTimeout:1.0];
-            self.port.delegate = self;
-            [self.port open];
-            
-            self.canSendData = YES;
-            
-        } else if (self.port != nil) {
-            self.port = nil;
-        }
+        NSError *err = nil;
+        [self.port openWithBaudRate:57600
+                              error:&err];
+        
+        if (err)
+            NSLog(@"[%@ %@]: %@", NSStringFromClass([self class]), NSStringFromSelector(_cmd), err);
+        
+        [self performSelector:@selector(enableWrite)
+                   withObject:nil
+                   afterDelay:2.0];
         
     } else if ([keyPath isEqualToString:@"canSendData"]) {
         if (self.canSendData && self.pendingChannel1Color)
@@ -84,6 +77,13 @@ struct ArduinoDioderControlMessage {
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
+}
+
+-(void)enableWrite {
+    
+    
+    
+    self.canSendData = YES;
 }
 
 -(void)pushColorsToChannel1:(NSColor *)channel1 
@@ -102,7 +102,7 @@ struct ArduinoDioderControlMessage {
 
 -(void)sendColours {
     
-    if (!self.canSendData)
+    if (!self.canSendData && ![self.port isOpen])
         return;
     
     self.canSendData = NO;
@@ -149,11 +149,11 @@ struct ArduinoDioderControlMessage {
     message.checksum = checksum;
     
     NSData *data = [NSData dataWithBytes:&message length:sizeof(struct ArduinoDioderControlMessage)];
-    NSError *error = nil;
-    NSString *reply = nil;
+    //NSError *error = nil;
+    //NSString *reply = nil;
     
-    [self.port writeData:data error:&error];
-    
+    [self.port writeData:data];
+     /*
     if (!error)
         reply = [self.port readBytes:10 upToChar:(char)10 usingEncoding:NSUTF8StringEncoding error:&error];
     
@@ -162,6 +162,7 @@ struct ArduinoDioderControlMessage {
     
     if (!error && ![[reply stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqualToString:@"OK"])
         NSLog(@"[%@ %@]: %@", NSStringFromClass([self class]), NSStringFromSelector(_cmd), reply);
+    */
     
     self.pendingChannel1Color = nil;
     self.pendingChannel2Color = nil;

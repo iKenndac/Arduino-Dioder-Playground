@@ -7,7 +7,7 @@
 //
 
 #import "Dioder_Screen_ColoursAppDelegate.h"
-#import "AMSerialPortList.h"
+#import "DKSerialPort.h"
 
 void screenDidUpdate(CGRectCount count, const CGRect *rectArray, void *userParameter);
 static NSTimeInterval const kScreenshotFrequency = 0.05;
@@ -30,13 +30,8 @@ static NSDate *lastShotTaken;
     // Insert code here to initialize your application
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(portsChanged:)
-                                                 name:AMSerialPortListDidAddPortsNotification
-                                               object:[AMSerialPortList sharedPortList]];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(portsChanged:)
-                                                 name:AMSerialPortListDidRemovePortsNotification
-                                               object:[AMSerialPortList sharedPortList]];
+                                                 name:DKSerialPortsDidChangeNotification
+                                               object:nil];
     
     self.commsController = [[[ArduinoDioderCommunicationController alloc] init] autorelease];
     
@@ -47,13 +42,15 @@ static NSDate *lastShotTaken;
 
 }
 
+
 -(void)portsChanged:(NSNotification *)aNotification {
-    self.ports = [[[AMSerialPortList sharedPortList] serialPorts] sortedArrayUsingComparator:^(id a, id b) {
+    self.ports = [[DKSerialPort availableSerialPorts] sortedArrayUsingComparator:^(id a, id b) {
         return [[a name] caseInsensitiveCompare:[b name]];
     }];
 }
 
 -(void)applicationWillTerminate:(NSNotification *)notification {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:DKSerialPortsDidChangeNotification object:nil];
     self.commsController = nil;
     CGUnregisterScreenRefreshCallback(screenDidUpdate, self);
 }

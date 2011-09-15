@@ -8,24 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		5019E83314226C99007FDF7E /* ArduinoDioderCommunicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5019E83214226C99007FDF7E /* ArduinoDioderCommunicationController.m */; };
+		50BE6FE814229A69007AFD21 /* DKSerialPort.m in Sources */ = {isa = PBXBuildFile; fileRef = 50BE6FE714229A69007AFD21 /* DKSerialPort.m */; };
 		50DC17AD1421344400DBB89D /* Dioder_Screen_ColoursAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DCE3EE142123D0003A3AEE /* Dioder_Screen_ColoursAppDelegate.m */; };
 		50DCE3DC142123D0003A3AEE /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50DCE3DB142123D0003A3AEE /* Cocoa.framework */; };
 		50DCE3E6142123D0003A3AEE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 50DCE3E4142123D0003A3AEE /* InfoPlist.strings */; };
 		50DCE3E8142123D0003A3AEE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DCE3E7142123D0003A3AEE /* main.m */; };
 		50DCE3EC142123D0003A3AEE /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 50DCE3EA142123D0003A3AEE /* Credits.rtf */; };
 		50DCE3F2142123D1003A3AEE /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50DCE3F0142123D1003A3AEE /* MainMenu.xib */; };
-		50DCE407142123D8003A3AEE /* AMSerialPort.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DCE3FC142123D8003A3AEE /* AMSerialPort.m */; };
-		50DCE408142123D8003A3AEE /* AMSerialPort_Deprecated.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DCE3FE142123D8003A3AEE /* AMSerialPort_Deprecated.m */; };
-		50DCE409142123D8003A3AEE /* AMSerialPortAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DCE400142123D8003A3AEE /* AMSerialPortAdditions.m */; };
-		50DCE40A142123D8003A3AEE /* AMSerialPortList.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DCE402142123D8003A3AEE /* AMSerialPortList.m */; };
-		50DCE40B142123D8003A3AEE /* AMSerialPortList_Deprecated.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DCE404142123D8003A3AEE /* AMSerialPortList_Deprecated.m */; };
-		50DCE40C142123D8003A3AEE /* AMStandardEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DCE406142123D8003A3AEE /* AMStandardEnumerator.m */; };
 		50DCE40E1421246E003A3AEE /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50DCE40D1421246E003A3AEE /* IOKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5019E83114226C99007FDF7E /* ArduinoDioderCommunicationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ArduinoDioderCommunicationController.h; path = ../../ArduinoDioderCommunicationController.h; sourceTree = "<group>"; };
 		5019E83214226C99007FDF7E /* ArduinoDioderCommunicationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ArduinoDioderCommunicationController.m; path = ../../ArduinoDioderCommunicationController.m; sourceTree = "<group>"; };
+		50BE6FE614229A69007AFD21 /* DKSerialPort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DKSerialPort.h; path = ../../DKSerialPort.h; sourceTree = "<group>"; };
+		50BE6FE714229A69007AFD21 /* DKSerialPort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DKSerialPort.m; path = ../../DKSerialPort.m; sourceTree = "<group>"; };
 		50DCE3D7142123D0003A3AEE /* Dioder Screen Colours.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dioder Screen Colours.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		50DCE3DB142123D0003A3AEE /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		50DCE3DE142123D0003A3AEE /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -39,20 +36,6 @@
 		50DCE3ED142123D0003A3AEE /* Dioder_Screen_ColoursAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Dioder_Screen_ColoursAppDelegate.h; sourceTree = "<group>"; };
 		50DCE3EE142123D0003A3AEE /* Dioder_Screen_ColoursAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Dioder_Screen_ColoursAppDelegate.m; sourceTree = "<group>"; };
 		50DCE3F1142123D1003A3AEE /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		50DCE3F9142123D8003A3AEE /* AMSDKCompatibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSDKCompatibility.h; sourceTree = "<group>"; };
-		50DCE3FA142123D8003A3AEE /* AMSerialErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSerialErrors.h; sourceTree = "<group>"; };
-		50DCE3FB142123D8003A3AEE /* AMSerialPort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSerialPort.h; sourceTree = "<group>"; };
-		50DCE3FC142123D8003A3AEE /* AMSerialPort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMSerialPort.m; sourceTree = "<group>"; };
-		50DCE3FD142123D8003A3AEE /* AMSerialPort_Deprecated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSerialPort_Deprecated.h; sourceTree = "<group>"; };
-		50DCE3FE142123D8003A3AEE /* AMSerialPort_Deprecated.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMSerialPort_Deprecated.m; sourceTree = "<group>"; };
-		50DCE3FF142123D8003A3AEE /* AMSerialPortAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSerialPortAdditions.h; sourceTree = "<group>"; };
-		50DCE400142123D8003A3AEE /* AMSerialPortAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMSerialPortAdditions.m; sourceTree = "<group>"; };
-		50DCE401142123D8003A3AEE /* AMSerialPortList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSerialPortList.h; sourceTree = "<group>"; };
-		50DCE402142123D8003A3AEE /* AMSerialPortList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMSerialPortList.m; sourceTree = "<group>"; };
-		50DCE403142123D8003A3AEE /* AMSerialPortList_Deprecated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSerialPortList_Deprecated.h; sourceTree = "<group>"; };
-		50DCE404142123D8003A3AEE /* AMSerialPortList_Deprecated.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMSerialPortList_Deprecated.m; sourceTree = "<group>"; };
-		50DCE405142123D8003A3AEE /* AMStandardEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMStandardEnumerator.h; sourceTree = "<group>"; };
-		50DCE406142123D8003A3AEE /* AMStandardEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMStandardEnumerator.m; sourceTree = "<group>"; };
 		50DCE40D1421246E003A3AEE /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -69,6 +52,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		50148A911422AF3B00B7D1EE /* Serial Communication */ = {
+			isa = PBXGroup;
+			children = (
+				5019E83114226C99007FDF7E /* ArduinoDioderCommunicationController.h */,
+				5019E83214226C99007FDF7E /* ArduinoDioderCommunicationController.m */,
+				50BE6FE614229A69007AFD21 /* DKSerialPort.h */,
+				50BE6FE714229A69007AFD21 /* DKSerialPort.m */,
+			);
+			name = "Serial Communication";
+			sourceTree = "<group>";
+		};
 		50DCE3CC142123D0003A3AEE = {
 			isa = PBXGroup;
 			children = (
@@ -109,9 +103,7 @@
 		50DCE3E1142123D0003A3AEE /* Dioder Screen Colours */ = {
 			isa = PBXGroup;
 			children = (
-				5019E83114226C99007FDF7E /* ArduinoDioderCommunicationController.h */,
-				5019E83214226C99007FDF7E /* ArduinoDioderCommunicationController.m */,
-				50DCE3F8142123D8003A3AEE /* AMSerialPort */,
+				50148A911422AF3B00B7D1EE /* Serial Communication */,
 				50DCE3ED142123D0003A3AEE /* Dioder_Screen_ColoursAppDelegate.h */,
 				50DCE3EE142123D0003A3AEE /* Dioder_Screen_ColoursAppDelegate.m */,
 				50DCE3F0142123D1003A3AEE /* MainMenu.xib */,
@@ -130,28 +122,6 @@
 				50DCE3EA142123D0003A3AEE /* Credits.rtf */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		50DCE3F8142123D8003A3AEE /* AMSerialPort */ = {
-			isa = PBXGroup;
-			children = (
-				50DCE3F9142123D8003A3AEE /* AMSDKCompatibility.h */,
-				50DCE3FA142123D8003A3AEE /* AMSerialErrors.h */,
-				50DCE3FB142123D8003A3AEE /* AMSerialPort.h */,
-				50DCE3FC142123D8003A3AEE /* AMSerialPort.m */,
-				50DCE3FD142123D8003A3AEE /* AMSerialPort_Deprecated.h */,
-				50DCE3FE142123D8003A3AEE /* AMSerialPort_Deprecated.m */,
-				50DCE3FF142123D8003A3AEE /* AMSerialPortAdditions.h */,
-				50DCE400142123D8003A3AEE /* AMSerialPortAdditions.m */,
-				50DCE401142123D8003A3AEE /* AMSerialPortList.h */,
-				50DCE402142123D8003A3AEE /* AMSerialPortList.m */,
-				50DCE403142123D8003A3AEE /* AMSerialPortList_Deprecated.h */,
-				50DCE404142123D8003A3AEE /* AMSerialPortList_Deprecated.m */,
-				50DCE405142123D8003A3AEE /* AMStandardEnumerator.h */,
-				50DCE406142123D8003A3AEE /* AMStandardEnumerator.m */,
-			);
-			name = AMSerialPort;
-			path = ../../AMSerialPort;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,14 +189,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				50DCE3E8142123D0003A3AEE /* main.m in Sources */,
-				50DCE407142123D8003A3AEE /* AMSerialPort.m in Sources */,
-				50DCE408142123D8003A3AEE /* AMSerialPort_Deprecated.m in Sources */,
-				50DCE409142123D8003A3AEE /* AMSerialPortAdditions.m in Sources */,
-				50DCE40A142123D8003A3AEE /* AMSerialPortList.m in Sources */,
-				50DCE40B142123D8003A3AEE /* AMSerialPortList_Deprecated.m in Sources */,
-				50DCE40C142123D8003A3AEE /* AMStandardEnumerator.m in Sources */,
 				50DC17AD1421344400DBB89D /* Dioder_Screen_ColoursAppDelegate.m in Sources */,
 				5019E83314226C99007FDF7E /* ArduinoDioderCommunicationController.m in Sources */,
+				50BE6FE814229A69007AFD21 /* DKSerialPort.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

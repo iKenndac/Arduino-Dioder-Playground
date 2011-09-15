@@ -42,7 +42,7 @@ void setup() {
   appearToHaveValidMessage = false;
 
   // initialize the serial communication:
-  Serial.begin(9600);
+  Serial.begin(57600);
 }
 
 

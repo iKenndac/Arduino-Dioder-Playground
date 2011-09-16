@@ -80,9 +80,6 @@ struct ArduinoDioderControlMessage {
 }
 
 -(void)enableWrite {
-    
-    
-    
     self.canSendData = YES;
 }
 
@@ -149,20 +146,18 @@ struct ArduinoDioderControlMessage {
     message.checksum = checksum;
     
     NSData *data = [NSData dataWithBytes:&message length:sizeof(struct ArduinoDioderControlMessage)];
-    //NSError *error = nil;
-    //NSString *reply = nil;
+    NSError *error = nil;
+    NSString *reply = nil;
     
-    [self.port writeData:data];
-     /*
+    [self.port writeData:data error:&error];
+    
     if (!error)
-        reply = [self.port readBytes:10 upToChar:(char)10 usingEncoding:NSUTF8StringEncoding error:&error];
+        reply = [self.port readLineWithError:&error];
     
     if (error)
         NSLog(@"[%@ %@]: %@", NSStringFromClass([self class]), NSStringFromSelector(_cmd), error);
-    
-    if (!error && ![[reply stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqualToString:@"OK"])
+    else if (reply && ![reply isEqualToString:@"OK"])
         NSLog(@"[%@ %@]: %@", NSStringFromClass([self class]), NSStringFromSelector(_cmd), reply);
-    */
     
     self.pendingChannel1Color = nil;
     self.pendingChannel2Color = nil;
@@ -184,6 +179,7 @@ struct ArduinoDioderControlMessage {
 -(void)dealloc {
     
     [self removeObserver:self forKeyPath:@"port"];
+    [self removeObserver:self forKeyPath:@"canSendData"];
     
     self.canSendData = NO;
     [self.port close];

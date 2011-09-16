@@ -1,0 +1,3 @@
+[submodule "Xcode Projects/DKSerialPort"]
+	path = Xcode Projects/DKSerialPort
+	url = git@github.com:iKenndac/DKSerialPort.git

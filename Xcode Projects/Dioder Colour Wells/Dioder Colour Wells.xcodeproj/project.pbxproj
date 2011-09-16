@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5019E83B142274D3007FDF7E /* ArduinoDioderCommunicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5019E83A142274D3007FDF7E /* ArduinoDioderCommunicationController.m */; };
-		50BE6FF31422AEF2007AFD21 /* DKSerialPort.m in Sources */ = {isa = PBXBuildFile; fileRef = 50BE6FF21422AEF2007AFD21 /* DKSerialPort.m */; };
+		50A6DE8E1423DF07009A8B13 /* DKSerialPort.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A6DE8D1423DF07009A8B13 /* DKSerialPort.m */; };
 		50FC7E8A1418ECA6009ACCB6 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FC7E891418ECA6009ACCB6 /* Cocoa.framework */; };
 		50FC7E941418ECA6009ACCB6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 50FC7E921418ECA6009ACCB6 /* InfoPlist.strings */; };
 		50FC7E961418ECA6009ACCB6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FC7E951418ECA6009ACCB6 /* main.m */; };
@@ -21,8 +21,8 @@
 /* Begin PBXFileReference section */
 		5019E839142274D3007FDF7E /* ArduinoDioderCommunicationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ArduinoDioderCommunicationController.h; path = ../../ArduinoDioderCommunicationController.h; sourceTree = "<group>"; };
 		5019E83A142274D3007FDF7E /* ArduinoDioderCommunicationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ArduinoDioderCommunicationController.m; path = ../../ArduinoDioderCommunicationController.m; sourceTree = "<group>"; };
-		50BE6FF11422AEF2007AFD21 /* DKSerialPort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DKSerialPort.h; path = ../../DKSerialPort.h; sourceTree = "<group>"; };
-		50BE6FF21422AEF2007AFD21 /* DKSerialPort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DKSerialPort.m; path = ../../DKSerialPort.m; sourceTree = "<group>"; };
+		50A6DE8C1423DF07009A8B13 /* DKSerialPort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DKSerialPort.h; path = ../../DKSerialPort/DKSerialPort.h; sourceTree = "<group>"; };
+		50A6DE8D1423DF07009A8B13 /* DKSerialPort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DKSerialPort.m; path = ../../DKSerialPort/DKSerialPort.m; sourceTree = "<group>"; };
 		50FC7E851418ECA6009ACCB6 /* Dioder Colour Wells.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dioder Colour Wells.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		50FC7E891418ECA6009ACCB6 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		50FC7E8C1418ECA6009ACCB6 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -55,10 +55,10 @@
 		50BE6FF01422AED6007AFD21 /* Serial Communication */ = {
 			isa = PBXGroup;
 			children = (
-				50BE6FF11422AEF2007AFD21 /* DKSerialPort.h */,
-				50BE6FF21422AEF2007AFD21 /* DKSerialPort.m */,
 				5019E839142274D3007FDF7E /* ArduinoDioderCommunicationController.h */,
 				5019E83A142274D3007FDF7E /* ArduinoDioderCommunicationController.m */,
+				50A6DE8C1423DF07009A8B13 /* DKSerialPort.h */,
+				50A6DE8D1423DF07009A8B13 /* DKSerialPort.m */,
 			);
 			name = "Serial Communication";
 			sourceTree = "<group>";
@@ -191,7 +191,7 @@
 				50FC7E961418ECA6009ACCB6 /* main.m in Sources */,
 				50FC7E9D1418ECA6009ACCB6 /* Dioder_Colour_WellsAppDelegate.m in Sources */,
 				5019E83B142274D3007FDF7E /* ArduinoDioderCommunicationController.m in Sources */,
-				50BE6FF31422AEF2007AFD21 /* DKSerialPort.m in Sources */,
+				50A6DE8E1423DF07009A8B13 /* DKSerialPort.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

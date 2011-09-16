@@ -1,0 +1,8 @@
+Arduino + Dioder Playground
+===========================
+
+This repository contains Xcode projects and Arduino sketches for controlling IKEA Dioder LED strips using an Arduino Mega 2560. You can find a detailed writeup about this here:
+
+http://danielkennett.org/blog/2011/09/arduino-dioder-part-one/
+
+*IMPORTANT:* When checking out this repository, you *must* run a run a +git submodule update --init+ before the projects will build.

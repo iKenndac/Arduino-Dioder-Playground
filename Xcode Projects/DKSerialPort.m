@@ -13,10 +13,15 @@
 #include <IOKit/serial/ioss.h>
 #include <sys/ioctl.h>
 
+static const int kDefaultReadBufferSize = 256;
+static const int kStringReadingBufferSize = 1024;
+static const NSTimeInterval kTimeout = 5.0;
+
 @interface DKSerialPort ()
 
 @property (nonatomic, copy, readwrite) NSString *serialPortPath;
 @property (nonatomic, copy, readwrite) NSString *name;
+@property (nonatomic, retain, readwrite) NSMutableData *internalBuffer;
 
 +(void)registerForSerialPortChangeNotifications;
 +(DKSerialPort *)getNextSerialPort:(io_iterator_t)serialPortIterator;
@@ -26,13 +31,13 @@
 @implementation DKSerialPort {
     int serialFileDescriptor; // file handle to the serial port
 	struct termios gOriginalTTYAttrs; // Hold the original termios attributes so we can reset them on quit ( best practice )
-    BOOL readThreadRunning;
 }
 
 -(id)initWithSerialPortAtPath:(NSString *)path name:(NSString *)portName {
     if ((self = [super init])) {
         self.serialPortPath = path;
         self.name = portName;
+        self.internalBuffer = [NSMutableData data];
     }
     return self;
 }
@@ -42,6 +47,7 @@
 		close(serialFileDescriptor);
 		serialFileDescriptor = -1;
     }
+    self.internalBuffer = nil;
     self.name = nil;
     self.serialPortPath = nil;
     [super dealloc];
@@ -57,6 +63,7 @@
 
 @synthesize name;
 @synthesize serialPortPath;
+@synthesize internalBuffer;
 
 -(void)openWithBaudRate:(NSUInteger)baud error:(NSError **)error {
     
@@ -64,9 +71,6 @@
 	if (serialFileDescriptor != -1) {
 		close(serialFileDescriptor);
 		serialFileDescriptor = -1;
-		
-		// wait for the reading thread to die
-		while(readThreadRunning);
 		
 		// re-opening the same port REALLY fast will fail spectacularly... better to sleep a sec
 		[NSThread sleepForTimeInterval:0.5];
@@ -177,14 +181,21 @@
 		serialFileDescriptor = -1;
         return;
     }
-    
-    [self performSelectorInBackground:@selector(incomingDataReadThread:) withObject:[NSThread currentThread]];
 }
 
--(void)writeData:(NSData *)data {
+-(void)writeData:(NSData *)data error:(NSError **)error {
     // send a string to the serial port
     if (serialFileDescriptor != -1) {
-        write(serialFileDescriptor, [data bytes], [data length]);
+        if (write(serialFileDescriptor, [data bytes], [data length]) == -1 && error) \
+            *error = [NSError errorWithDomain:@"org.danielkennett.dkserialport"
+                                         code:0
+                                     userInfo:[NSDictionary dictionaryWithObject:@"Couldn't write"
+                                                                          forKey:NSLocalizedDescriptionKey]];
+    } else if (error) {
+        *error = [NSError errorWithDomain:@"org.danielkennett.dkserialport"
+                                     code:0
+                                 userInfo:[NSDictionary dictionaryWithObject:@"Couldn't write"
+                                                                      forKey:NSLocalizedDescriptionKey]];
     }
 }
 
@@ -199,58 +210,124 @@
     return serialFileDescriptor != -1;
 }
 
-// This selector/function will be called as another thread...
-//  this thread will read from the serial port and exits when the port is closed
--(void)incomingDataReadThread:(NSThread *)parentThread {
-	
-	// create a pool so we can use regular Cocoa stuff
-	//   child threads can't re-use the parent's autorelease pool
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-	
-	// mark that the thread is running
-	readThreadRunning = YES;
-	
-	const int BUFFER_SIZE = 100;
-	char byte_buffer[BUFFER_SIZE]; // buffer for holding incoming data
-	ssize_t numBytes=0; // number of bytes read during read
-	
-	// assign a high priority to this thread
-	[NSThread setThreadPriority:1.0];
-	
-	// this will loop unitl the serial port closes
-	while(YES) {
-		// read() blocks until some data is available or the port is closed
-		numBytes = read(serialFileDescriptor, byte_buffer, BUFFER_SIZE); // read up to the size of the buffer
-		if(numBytes>0) {
-			// create an NSString from the incoming bytes (the bytes aren't null terminated)
-			NSData *data = [NSData dataWithBytes:byte_buffer length:numBytes];
-			
-			// this text can't be directly sent to the text area from this thread
-			//  BUT, we can call a selctor on the main thread.
-			[self performSelectorOnMainThread:@selector(dataWasRead:)
-                                   withObject:data
-                                waitUntilDone:YES];
-		} else {
-			break; // Stop the thread if there is an error
-		}
-	}
-	
-	// make sure the serial port is closed
-	if (serialFileDescriptor != -1) {
-		close(serialFileDescriptor);
-		serialFileDescriptor = -1;
-	}
-	
-	// mark that the thread has quit
-	readThreadRunning = NO;
-	
-	// give back the pool
-	[pool release];
+-(NSData *)readWithError:(NSError **)error {
+    return [self readWithMaximumByteCount:kDefaultReadBufferSize error:error];
 }
 
--(void)dataWasRead:(NSData *)data {
-    NSString *string = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
-    NSLog(@"[%@ %@]: %@", NSStringFromClass([self class]), NSStringFromSelector(_cmd), string);
+-(NSData *)readWithMaximumByteCount:(NSUInteger)bufferSize error:(NSError **)error {
+    @synchronized(internalBuffer) {
+        
+        NSData *existingChunk = nil;
+        
+        if (self.internalBuffer.length > 0) {
+            if (self.internalBuffer.length < bufferSize) {
+                existingChunk = [NSData dataWithData:self.internalBuffer];
+                [self.internalBuffer replaceBytesInRange:NSMakeRange(0, self.internalBuffer.length)
+                                               withBytes:NULL
+                                                  length:0];
+            } else {
+                existingChunk = [self.internalBuffer subdataWithRange:NSMakeRange(0, bufferSize)];
+                [self.internalBuffer replaceBytesInRange:NSMakeRange(0, bufferSize)
+                                               withBytes:NULL
+                                                  length:0];
+                return existingChunk;
+            }
+        }
+        
+        NSUInteger bytesToReadSize = bufferSize - existingChunk.length;
+        
+        char byteBuffer[bytesToReadSize]; // buffer for holding incoming data
+        ssize_t numBytes = read(serialFileDescriptor, byteBuffer, bytesToReadSize);
+        if (numBytes > 0) { // read up to the size of the buffer
+            NSData *readData = [NSData dataWithBytes:byteBuffer length:numBytes];
+            if (existingChunk) {
+                NSMutableData *data = [NSMutableData dataWithData:existingChunk];
+                [data appendData:readData];
+                return data;
+            } else {
+                return readData;
+            }
+        } else if (numBytes == -1) {
+            // Error!
+            if (error)
+                *error = [NSError errorWithDomain:@"org.danielkennett.dkserialport"
+                                             code:0
+                                         userInfo:[NSDictionary dictionaryWithObject:@"Could not read data"
+                                                                              forKey:NSLocalizedDescriptionKey]];
+        }
+        return nil;
+    }
+}
+
+-(NSData *)readUntilByte:(unsigned char)terminationByte orMaximumByteCount:(NSUInteger)bufferSize error:(NSError **)error {
+    
+    // Loooooop
+    @synchronized(internalBuffer) {
+    
+        while(YES) {
+            
+            if (self.internalBuffer.length >= bufferSize) {
+                NSData *existingChunk = [self.internalBuffer subdataWithRange:NSMakeRange(0, bufferSize)];
+                [self.internalBuffer replaceBytesInRange:NSMakeRange(0, bufferSize)
+                                               withBytes:NULL
+                                                  length:0];
+                return existingChunk;
+            }
+            
+            if (self.internalBuffer.length > 0) {
+                // Check the internal buffer for the character
+                
+                const unsigned char *bytes = [self.internalBuffer bytes];
+                
+                for (NSUInteger index = 0; index < self.internalBuffer.length; index++) {
+                    
+                    if (bytes[index] == terminationByte) {
+                        NSData *existingChunk = [self.internalBuffer subdataWithRange:NSMakeRange(0, index + 1)];
+                        [self.internalBuffer replaceBytesInRange:NSMakeRange(0, index + 1)
+                                                       withBytes:NULL
+                                                          length:0];
+                        return existingChunk;
+                    }
+                }
+            }
+            
+            // If we get here, the internal buffer is empty, or less than bufferSize and doesn't contain terminationByte
+            NSUInteger bytesToReadSize = bufferSize - self.internalBuffer.length;
+            
+            char byteBuffer[bytesToReadSize]; // buffer for holding incoming data
+            ssize_t numBytes = read(serialFileDescriptor, byteBuffer, bytesToReadSize);
+            if (numBytes > 0) { // read up to the size of the buffer
+                NSData *readData = [NSData dataWithBytes:byteBuffer length:numBytes];
+                [self.internalBuffer appendData:readData];
+            } else if (numBytes == -1) {
+                // Error!
+                if (error)
+                    *error = [NSError errorWithDomain:@"org.danielkennett.dkserialport"
+                                                 code:0
+                                             userInfo:[NSDictionary dictionaryWithObject:@"Could not read data"
+                                                                                  forKey:NSLocalizedDescriptionKey]];
+
+                return nil;
+            }
+        }
+    }
+}
+
+-(NSString *)readUTF8CStringWithError:(NSError **)error {
+    NSData *stringData = [self readUntilByte:0 orMaximumByteCount:kStringReadingBufferSize error:error];
+    if (stringData)
+        return [[[NSString alloc] initWithUTF8String:[stringData bytes]] autorelease];
+    
+    return nil;
+}
+
+-(NSString *)readLineWithError:(NSError **)error {
+    NSData *stringData = [self readUntilByte:'\n' orMaximumByteCount:kStringReadingBufferSize error:error];
+    if (stringData)
+        return [[[[NSString alloc] initWithUTF8String:[stringData bytes]] autorelease] 
+                stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+    
+    return nil;
 }
 
 #pragma mark -
@@ -421,19 +498,5 @@ static void DKSerialPortWasRemovedNotification(void *refcon, io_iterator_t itera
 		// Note that IONotificationPortDestroy(notificationPort) is deliberately not called here because if it were our port change notifications would never fire.  This minor leak is pretty irrelevent since this object is a singleton that lives for the life of the application anyway.
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 @end

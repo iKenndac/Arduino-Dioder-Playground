@@ -9,6 +9,12 @@
 #import <Cocoa/Cocoa.h>
 #import "ArduinoDioderCommunicationController.h"
 
+typedef enum {
+    kScreenSamplingPickAPixel = 0,
+    kScreenSamplingAverageRGB,
+    kScreenSamplingAverageHue
+} ScreenSamplingMode;
+
 @interface Dioder_Screen_ColoursAppDelegate : NSObject <NSApplicationDelegate> {
     NSWindow *window;
 }
@@ -19,12 +25,22 @@
 @property (readwrite, retain, nonatomic) NSArray *ports;
 @property (readwrite, retain, nonatomic) NSImage *image;
 
+@property (readwrite, nonatomic) ScreenSamplingMode screenSamplingAlgorithm;
+
 @property (readwrite, retain, nonatomic) NSColor *channel1Color;
 @property (readwrite, retain, nonatomic) NSColor *channel2Color;
 @property (readwrite, retain, nonatomic) NSColor *channel3Color;
 @property (readwrite, retain, nonatomic) NSColor *channel4Color;
 
--(void)sendColours;
 -(void)portsChanged:(NSNotification *)aNotification;
+
+-(void)calculateColoursOfImage:(CGImageRef)imageRef;
+-(void)calculateColoursOfImageWithPickAPixel:(CGImageRef)imageRef;
+-(void)calculateColoursOfImageWithAverageRGB:(CGImageRef)imageRef;
+-(void)calculateColoursOfImageWithAverageHue:(CGImageRef)imageRef;
+-(void)sendColours;
+
+-(void)renderImage:(CGImageRef)imageRef;
+-(void)setPreviewImageWithWidth:(size_t)imageWidth height:(size_t)imageHeight;
 
 @end

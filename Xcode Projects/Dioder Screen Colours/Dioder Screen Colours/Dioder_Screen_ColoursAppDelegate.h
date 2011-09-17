@@ -42,7 +42,6 @@ typedef enum {
 -(void)sendColours;
 
 -(NSColor *)colorFromFirstPixelOfCIImage:(CIImage *)ciImage;
--(void)renderImage:(CGImageRef)imageRef;
--(void)setPreviewImageWithWidth:(size_t)imageWidth height:(size_t)imageHeight;
+-(void)setPreviewImageWithBitmapImageRep:(NSBitmapImageRep *)rep;
 
 @end

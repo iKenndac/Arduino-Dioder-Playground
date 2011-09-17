@@ -13,8 +13,6 @@
 void screenDidUpdate(CGRectCount count, const CGRect *rectArray, void *userParameter);
 static NSTimeInterval const kScreenshotFrequency = 0.05;
 static NSDate *lastShotTaken;
-static unsigned char *_imageRenderBuffer;
-static size_t _bufferLength;
 
 @implementation Dioder_Screen_ColoursAppDelegate
 
@@ -33,10 +31,6 @@ static size_t _bufferLength;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    
-    _imageRenderBuffer = NULL;
-    _bufferLength = 0;
-    
     // Insert code here to initialize your application
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(portsChanged:)
@@ -108,41 +102,23 @@ void screenDidUpdate(CGRectCount count, const CGRect *rectArray, void *userParam
 
 -(void)calculateColoursOfImageWithPickAPixel:(CGImageRef)imageRef {
     
-    size_t imageWidth = CGImageGetWidth(imageRef);
-    size_t imageHeight = CGImageGetHeight(imageRef);
-    NSUInteger bytesPerPixel = 4;
-    
-    [self renderImage:imageRef];
-        
+    NSBitmapImageRep *rep = [[[NSBitmapImageRep alloc] initWithCGImage:imageRef] autorelease];
     NSUInteger pixelInset = 128;
+        
+    self.channel1Color = [rep colorAtX:rep.pixelsWide / 2
+                                     y:rep.pixelsHigh - pixelInset];
     
-    NSUInteger kBottomMiddle = ((imageWidth * (imageHeight - pixelInset)) - (imageWidth / 2)) * bytesPerPixel;
-    NSUInteger kTopMiddle = ((imageWidth * pixelInset) + (imageWidth / 2)) * bytesPerPixel;
-    NSUInteger kLeftMiddle = ((imageWidth * (imageHeight / 2)) + pixelInset) * bytesPerPixel;
-    NSUInteger kRightMiddle = ((imageWidth * (imageHeight / 2)) + (imageWidth - pixelInset)) * bytesPerPixel;
+    self.channel2Color = [rep colorAtX:rep.pixelsWide / 2
+                                     y:pixelInset];
     
-    self.channel1Color = [NSColor colorWithCalibratedRed:(_imageRenderBuffer[kBottomMiddle] * 1.0) / 255.0
-                                                   green:(_imageRenderBuffer[kBottomMiddle + 1] * 1.0) / 255.0
-                                                    blue:(_imageRenderBuffer[kBottomMiddle + 2] * 1.0) / 255.0
-                                                   alpha:1.0];
+    self.channel3Color = [rep colorAtX:pixelInset
+                                     y:rep.pixelsHigh / 2];
     
-    self.channel2Color = [NSColor colorWithCalibratedRed:(_imageRenderBuffer[kTopMiddle] * 1.0) / 255.0
-                                                   green:(_imageRenderBuffer[kTopMiddle + 1] * 1.0) / 255.0
-                                                    blue:(_imageRenderBuffer[kTopMiddle + 2] * 1.0) / 255.0
-                                                   alpha:1.0];
-    
-    self.channel3Color = [NSColor colorWithCalibratedRed:(_imageRenderBuffer[kLeftMiddle] * 1.0) / 255.0
-                                                   green:(_imageRenderBuffer[kLeftMiddle + 1] * 1.0) / 255.0
-                                                    blue:(_imageRenderBuffer[kLeftMiddle + 2] * 1.0) / 255.0
-                                                   alpha:1.0];
-    
-    self.channel4Color = [NSColor colorWithCalibratedRed:(_imageRenderBuffer[kRightMiddle] * 1.0) / 255.0
-                                                   green:(_imageRenderBuffer[kRightMiddle + 1] * 1.0) / 255.0
-                                                    blue:(_imageRenderBuffer[kRightMiddle + 2] * 1.0) / 255.0
-                                                   alpha:1.0];
+    self.channel4Color = [rep colorAtX:rep.pixelsWide - pixelInset
+                                     y:rep.pixelsHigh / 2];
     
     [self sendColours];
-    [self setPreviewImageWithWidth:imageWidth height:imageHeight];
+    [self setPreviewImageWithBitmapImageRep:rep];
 }
 
 -(void)calculateColoursOfImageWithAverageRGB:(CGImageRef)imageRef {
@@ -179,17 +155,12 @@ void screenDidUpdate(CGRectCount count, const CGRect *rectArray, void *userParam
     
     [self sendColours];
     
-    if (!self.avoidRenderingIfPossible) {
-        [self renderImage:imageRef];
-        [self setPreviewImageWithWidth:imageWidth height:imageHeight];
-    }
+    if (!self.avoidRenderingIfPossible)
+        [self setPreviewImageWithBitmapImageRep:[[[NSBitmapImageRep alloc] initWithCIImage:ciImage] autorelease]];
 }
 
 -(void)calculateColoursOfImageWithAverageHue:(CGImageRef)imageRef {
     
-    size_t imageWidth = CGImageGetWidth(imageRef);
-    size_t imageHeight = CGImageGetHeight(imageRef);
-
     self.channel1Color = [NSColor whiteColor];
     self.channel2Color = [NSColor whiteColor];
     self.channel3Color = [NSColor whiteColor];
@@ -197,10 +168,8 @@ void screenDidUpdate(CGRectCount count, const CGRect *rectArray, void *userParam
 
     [self sendColours];
     
-    if (!self.avoidRenderingIfPossible) {
-        [self renderImage:imageRef];
-        [self setPreviewImageWithWidth:imageWidth height:imageHeight];
-    }
+    if (!self.avoidRenderingIfPossible)
+        [self setPreviewImageWithBitmapImageRep:[[[NSBitmapImageRep alloc] initWithCGImage:imageRef] autorelease]];
 }
 
 -(void)sendColours {
@@ -218,50 +187,11 @@ void screenDidUpdate(CGRectCount count, const CGRect *rectArray, void *userParam
     return [rep colorAtX:0 y:0];
 }
 
--(void)renderImage:(CGImageRef)imageRef {
+-(void)setPreviewImageWithBitmapImageRep:(NSBitmapImageRep *)rep {
     
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    size_t imageWidth = CGImageGetWidth(imageRef);
-    size_t imageHeight = CGImageGetHeight(imageRef);
-    NSUInteger bytesPerPixel = 4;
-    NSUInteger bytesPerRow = bytesPerPixel * imageWidth;
-    
-    if (_bufferLength != imageWidth * imageHeight * bytesPerPixel) {
-        if (_imageRenderBuffer != NULL) {
-            free(_imageRenderBuffer);
-        }
-        _bufferLength = imageWidth * imageHeight * bytesPerPixel;
-        _imageRenderBuffer = malloc(imageWidth * imageHeight * bytesPerPixel);
-    }
-    
-    CGContextRef context = CGBitmapContextCreate(_imageRenderBuffer, imageWidth, imageHeight, 8, bytesPerRow, colorSpace, kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
-    CGColorSpaceRelease(colorSpace);
-    
-    CGContextDrawImage(context, (CGRect){ CGPointZero, CGSizeMake(imageWidth, imageHeight) }, imageRef);
-    CGContextRelease(context);
-}
-
--(void)setPreviewImageWithWidth:(size_t)imageWidth height:(size_t)imageHeight {
-    
-    NSUInteger bytesPerPixel = 4;
-    NSUInteger bytesPerRow = bytesPerPixel * imageWidth;
-    
-    NSBitmapImageRep *rep = [[NSBitmapImageRep alloc] initWithBitmapDataPlanes:(unsigned char **)&_imageRenderBuffer
-                                                                    pixelsWide:imageWidth
-                                                                    pixelsHigh:imageHeight
-                                                                 bitsPerSample:8
-                                                               samplesPerPixel:bytesPerPixel
-                                                                      hasAlpha:YES
-                                                                      isPlanar:NO
-                                                                colorSpaceName:NSDeviceRGBColorSpace
-                                                                  bitmapFormat:NSAlphaNonpremultipliedBitmapFormat
-                                                                   bytesPerRow:bytesPerRow
-                                                                  bitsPerPixel:8 * bytesPerPixel];
-    
-    NSImage *previewImage = [[NSImage alloc] initWithSize:NSMakeSize(imageWidth, imageHeight)];
+    NSImage *previewImage = [[NSImage alloc] initWithSize:NSMakeSize([rep pixelsWide], [rep pixelsHigh])];
     [previewImage addRepresentation:rep];
     [self setImage:previewImage];
-    [rep release];
     [previewImage release];
 }
 

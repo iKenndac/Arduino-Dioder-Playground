@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5019E83314226C99007FDF7E /* ArduinoDioderCommunicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5019E83214226C99007FDF7E /* ArduinoDioderCommunicationController.m */; };
+		50A3D49A1424E13600550605 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A3D4991424E13600550605 /* QuartzCore.framework */; };
 		50A6DE861423DEE8009A8B13 /* DKSerialPort.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A6DE851423DEE8009A8B13 /* DKSerialPort.m */; };
 		50DC17AD1421344400DBB89D /* Dioder_Screen_ColoursAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DCE3EE142123D0003A3AEE /* Dioder_Screen_ColoursAppDelegate.m */; };
 		50DCE3DC142123D0003A3AEE /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50DCE3DB142123D0003A3AEE /* Cocoa.framework */; };
@@ -21,6 +22,7 @@
 /* Begin PBXFileReference section */
 		5019E83114226C99007FDF7E /* ArduinoDioderCommunicationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ArduinoDioderCommunicationController.h; path = ../../ArduinoDioderCommunicationController.h; sourceTree = "<group>"; };
 		5019E83214226C99007FDF7E /* ArduinoDioderCommunicationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ArduinoDioderCommunicationController.m; path = ../../ArduinoDioderCommunicationController.m; sourceTree = "<group>"; };
+		50A3D4991424E13600550605 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		50A6DE841423DEE8009A8B13 /* DKSerialPort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DKSerialPort.h; path = ../../DKSerialPort/DKSerialPort.h; sourceTree = "<group>"; };
 		50A6DE851423DEE8009A8B13 /* DKSerialPort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DKSerialPort.m; path = ../../DKSerialPort/DKSerialPort.m; sourceTree = "<group>"; };
 		50DCE3D7142123D0003A3AEE /* Dioder Screen Colours.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dioder Screen Colours.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50A3D49A1424E13600550605 /* QuartzCore.framework in Frameworks */,
 				50DCE40E1421246E003A3AEE /* IOKit.framework in Frameworks */,
 				50DCE3DC142123D0003A3AEE /* Cocoa.framework in Frameworks */,
 			);
@@ -83,6 +86,7 @@
 		50DCE3DA142123D0003A3AEE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				50A3D4991424E13600550605 /* QuartzCore.framework */,
 				50DCE40D1421246E003A3AEE /* IOKit.framework */,
 				50DCE3DB142123D0003A3AEE /* Cocoa.framework */,
 				50DCE3DD142123D0003A3AEE /* Other Frameworks */,

@@ -26,6 +26,7 @@ typedef enum {
 @property (readwrite, retain, nonatomic) NSImage *image;
 
 @property (readwrite, nonatomic) ScreenSamplingMode screenSamplingAlgorithm;
+@property (readwrite, nonatomic) BOOL avoidRenderingIfPossible;
 
 @property (readwrite, retain, nonatomic) NSColor *channel1Color;
 @property (readwrite, retain, nonatomic) NSColor *channel2Color;
@@ -40,6 +41,7 @@ typedef enum {
 -(void)calculateColoursOfImageWithAverageHue:(CGImageRef)imageRef;
 -(void)sendColours;
 
+-(NSColor *)colorFromFirstPixelOfCIImage:(CIImage *)ciImage;
 -(void)renderImage:(CGImageRef)imageRef;
 -(void)setPreviewImageWithWidth:(size_t)imageWidth height:(size_t)imageHeight;
 

@@ -8,9 +8,10 @@
 
 #import "Dioder_Screen_ColoursAppDelegate.h"
 #import "DKSerialPort.h"
+#import <QuartzCore/QuartzCore.h>
 
 void screenDidUpdate(CGRectCount count, const CGRect *rectArray, void *userParameter);
-static NSTimeInterval const kScreenshotFrequency = 0.1;
+static NSTimeInterval const kScreenshotFrequency = 0.05;
 static NSDate *lastShotTaken;
 static unsigned char *_imageRenderBuffer;
 static size_t _bufferLength;
@@ -23,6 +24,7 @@ static size_t _bufferLength;
 @synthesize image;
 
 @synthesize screenSamplingAlgorithm;
+@synthesize avoidRenderingIfPossible;
 
 @synthesize channel1Color;
 @synthesize channel2Color;
@@ -147,106 +149,40 @@ void screenDidUpdate(CGRectCount count, const CGRect *rectArray, void *userParam
     
     size_t imageWidth = CGImageGetWidth(imageRef);
     size_t imageHeight = CGImageGetHeight(imageRef);
-    NSUInteger bytesPerPixel = 4;
     
-    [self renderImage:imageRef];
-
     CGFloat insetFraction = 0.25;
     
-    NSUInteger rows = 0;
-    NSUInteger columns = 0;
-    
-    uint64_t rgbBuffer[3] = {0, 0, 0};
+    CIImage *ciImage = [CIImage imageWithCGImage:imageRef];
+    CIFilter *averageFilter = [CIFilter filterWithName:@"CIAreaAverage"];
+    [averageFilter setValue:ciImage forKey:@"inputImage"];
+
+    CIVector *topExtent = [CIVector vectorWithX:0.0 Y:0.0 Z:imageWidth W:imageHeight * insetFraction];
+    CIVector *leftExtent = [CIVector vectorWithX:0.0 Y:0.0 Z:imageWidth * insetFraction W:imageHeight];
+    CIVector *bottomExtent = [CIVector vectorWithX:0.0 Y:imageHeight - (imageHeight * insetFraction) Z:imageWidth W:imageHeight * insetFraction];
+    CIVector *rightExtent = [CIVector vectorWithX:imageWidth - (imageWidth * insetFraction) Y:0.0 Z:imageWidth * insetFraction W:imageHeight];
     
     // Bottom
+    [averageFilter setValue:bottomExtent forKey:@"inputExtent"];
+    self.channel1Color = [self colorFromFirstPixelOfCIImage:[averageFilter valueForKey:@"outputImage"]];
     
-    rows = imageHeight * insetFraction;
-    columns = imageWidth;
-    
-    for (NSUInteger row = imageHeight - rows; row < imageHeight; row++) {
-        for (NSUInteger column = row % 2; column < columns; column += 2) {
-            NSUInteger offset = ((row * imageWidth) + column) * bytesPerPixel;
-            rgbBuffer[0] += _imageRenderBuffer[offset];
-            rgbBuffer[1] += _imageRenderBuffer[offset + 1];
-            rgbBuffer[2] += _imageRenderBuffer[offset + 2];
-        }
-    }
-    
-    self.channel1Color = [NSColor colorWithDeviceRed:(rgbBuffer[0] / (rows * (columns / 2))) / 255.0
-                                               green:(rgbBuffer[1] / (rows * (columns / 2))) / 255.0
-                                                blue:(rgbBuffer[2] / (rows * (columns / 2))) / 255.0
-                                               alpha:1.0];
-    // Top 
-    
-    rgbBuffer[0] = 0;
-    rgbBuffer[1] = 0;
-    rgbBuffer[2] = 0;
-    
-    rows = imageHeight * insetFraction;
-    columns = imageWidth;
-    
-    for (NSUInteger row = 0; row < rows; row++) {
-        for (NSUInteger column = row % 2; column < imageWidth; column += 2) {
-            NSUInteger offset = ((row * imageWidth) + column) * bytesPerPixel;
-            rgbBuffer[0] += _imageRenderBuffer[offset];
-            rgbBuffer[1] += _imageRenderBuffer[offset + 1];
-            rgbBuffer[2] += _imageRenderBuffer[offset + 2];
-        }
-    }
-    
-    self.channel2Color = [NSColor colorWithDeviceRed:(rgbBuffer[0] / (rows * (columns / 2))) / 255.0
-                                               green:(rgbBuffer[1] / (rows * (columns / 2))) / 255.0
-                                                blue:(rgbBuffer[2] / (rows * (columns / 2))) / 255.0
-                                               alpha:1.0];
+    // Top
+    [averageFilter setValue:topExtent forKey:@"inputExtent"];
+    self.channel2Color = [self colorFromFirstPixelOfCIImage:[averageFilter valueForKey:@"outputImage"]];
     
     // Left
-    
-    rgbBuffer[0] = 0;
-    rgbBuffer[1] = 0;
-    rgbBuffer[2] = 0;
-    
-    rows = imageHeight;
-    columns = imageWidth * insetFraction;
-    
-    for (NSUInteger row = 0; row < imageHeight; row++) {
-        for (NSUInteger column = row % 2; column < columns; column += 2) {
-            NSUInteger offset = ((row * imageWidth) + column) * bytesPerPixel;
-            rgbBuffer[0] += _imageRenderBuffer[offset];
-            rgbBuffer[1] += _imageRenderBuffer[offset + 1];
-            rgbBuffer[2] += _imageRenderBuffer[offset + 2];
-        }
-    }
-    
-    self.channel3Color = [NSColor colorWithDeviceRed:(rgbBuffer[0] / (rows * (columns / 2))) / 255.0
-                                               green:(rgbBuffer[1] / (rows * (columns / 2))) / 255.0
-                                                blue:(rgbBuffer[2] / (rows * (columns / 2))) / 255.0
-                                               alpha:1.0];
-    
-    // Right
-    
-    rgbBuffer[0] = 0;
-    rgbBuffer[1] = 0;
-    rgbBuffer[2] = 0;
-    
-    rows = imageHeight;
-    columns = imageWidth * insetFraction;
-    
-    for (NSUInteger row = 0; row < imageHeight; row++) {
-        for (NSUInteger column = (imageWidth - columns) + (row % 2); column < imageWidth; column += 2) {
-            NSUInteger offset = ((row * imageWidth) + column) * bytesPerPixel;
-            rgbBuffer[0] += _imageRenderBuffer[offset];
-            rgbBuffer[1] += _imageRenderBuffer[offset + 1];
-            rgbBuffer[2] += _imageRenderBuffer[offset + 2];
-        }
-    }
-    
-    self.channel4Color = [NSColor colorWithDeviceRed:(rgbBuffer[0] / (rows * (columns / 2))) / 255.0
-                                               green:(rgbBuffer[1] / (rows * (columns / 2))) / 255.0
-                                                blue:(rgbBuffer[2] / (rows * (columns / 2))) / 255.0
-                                               alpha:1.0];
+    [averageFilter setValue:leftExtent forKey:@"inputExtent"];
+    self.channel3Color = [self colorFromFirstPixelOfCIImage:[averageFilter valueForKey:@"outputImage"]];
+
+    //Right
+    [averageFilter setValue:rightExtent forKey:@"inputExtent"];
+    self.channel4Color = [self colorFromFirstPixelOfCIImage:[averageFilter valueForKey:@"outputImage"]];
     
     [self sendColours];
-    [self setPreviewImageWithWidth:imageWidth height:imageHeight];
+    
+    if (!self.avoidRenderingIfPossible) {
+        [self renderImage:imageRef];
+        [self setPreviewImageWithWidth:imageWidth height:imageHeight];
+    }
 }
 
 -(void)calculateColoursOfImageWithAverageHue:(CGImageRef)imageRef {
@@ -263,6 +199,11 @@ void screenDidUpdate(CGRectCount count, const CGRect *rectArray, void *userParam
 
 #pragma mark -
 #pragma mark Image Rendering
+
+-(NSColor *)colorFromFirstPixelOfCIImage:(CIImage *)ciImage {
+    NSBitmapImageRep *rep = [[[NSBitmapImageRep alloc] initWithCIImage:ciImage] autorelease];
+    return [rep colorAtX:0 y:0];
+}
 
 -(void)renderImage:(CGImageRef)imageRef {
     

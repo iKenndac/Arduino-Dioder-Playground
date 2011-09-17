@@ -11,7 +11,10 @@
 #import <QuartzCore/QuartzCore.h>
 
 void screenDidUpdate(CGRectCount count, const CGRect *rectArray, void *userParameter);
+
 static NSTimeInterval const kScreenshotFrequency = 0.05;
+static CGFloat const kScreenColourCalculationInsetFraction = 0.25;
+
 static NSDate *lastShotTaken;
 
 @implementation Dioder_Screen_ColoursAppDelegate
@@ -66,19 +69,43 @@ void screenDidUpdate(CGRectCount count, const CGRect *rectArray, void *userParam
     
     Dioder_Screen_ColoursAppDelegate *self = userParameter;
     
+    // Always assume main screen
+    NSScreen *mainScreen = [[NSScreen screens] objectAtIndex:0];
+    
+    CGRect topBar = CGRectMake(0.0, 0.0, mainScreen.frame.size.width, mainScreen.frame.size.height * kScreenColourCalculationInsetFraction);
+    CGRect bottomBar = CGRectMake(0.0, mainScreen.frame.size.height - topBar.size.height, topBar.size.width, topBar.size.height);
+    CGRect leftBar = CGRectMake(0.0, 0.0, mainScreen.frame.size.width * kScreenColourCalculationInsetFraction, mainScreen.frame.size.height);
+    CGRect rightBar = CGRectMake(mainScreen.frame.size.width - leftBar.size.width, 0.0, leftBar.size.width, leftBar.size.height);
+    
+    for (NSUInteger currentChangedFrame = 0; currentChangedFrame < count; currentChangedFrame++) {
+        
+        CGRect changedRect = rectArray[currentChangedFrame];
+        
+        if (CGRectIntersectsRect(changedRect, topBar) ||
+            CGRectIntersectsRect(changedRect, bottomBar) ||
+            CGRectIntersectsRect(changedRect, leftBar) ||
+            CGRectIntersectsRect(changedRect, rightBar)) {
+            [self updateScreenColoursIfAppropriate];
+            return;
+        }
+    }
+    //NSLog(@"[%@ %@]: %@", NSStringFromClass([self class]), @"screenDidUpdate", @"Change occurred but we don't care!");
+}
+
+-(void)updateScreenColoursIfAppropriate {
     if (lastShotTaken == nil)
         lastShotTaken = [NSDate new];
     
     if ([[NSDate date] timeIntervalSinceDate:lastShotTaken] < kScreenshotFrequency)
         return;
-
+    
     CGImageRef screenShot = CGWindowListCreateImage(CGRectInfinite, kCGWindowListOptionOnScreenOnly, kCGNullWindowID, kCGWindowImageDefault);
     [lastShotTaken release];
     lastShotTaken = [NSDate new];
     
     [self calculateColoursOfImage:screenShot];
     CGImageRelease(screenShot);
- }
+}
 
 #pragma mark -
 #pragma mark Image Calculations
@@ -126,16 +153,14 @@ void screenDidUpdate(CGRectCount count, const CGRect *rectArray, void *userParam
     size_t imageWidth = CGImageGetWidth(imageRef);
     size_t imageHeight = CGImageGetHeight(imageRef);
     
-    CGFloat insetFraction = 0.25;
-    
     CIImage *ciImage = [CIImage imageWithCGImage:imageRef];
     CIFilter *averageFilter = [CIFilter filterWithName:@"CIAreaAverage"];
     [averageFilter setValue:ciImage forKey:@"inputImage"];
 
-    CIVector *topExtent = [CIVector vectorWithX:0.0 Y:0.0 Z:imageWidth W:imageHeight * insetFraction];
-    CIVector *leftExtent = [CIVector vectorWithX:0.0 Y:0.0 Z:imageWidth * insetFraction W:imageHeight];
-    CIVector *bottomExtent = [CIVector vectorWithX:0.0 Y:imageHeight - (imageHeight * insetFraction) Z:imageWidth W:imageHeight * insetFraction];
-    CIVector *rightExtent = [CIVector vectorWithX:imageWidth - (imageWidth * insetFraction) Y:0.0 Z:imageWidth * insetFraction W:imageHeight];
+    CIVector *topExtent = [CIVector vectorWithX:0.0 Y:0.0 Z:imageWidth W:imageHeight * kScreenColourCalculationInsetFraction];
+    CIVector *leftExtent = [CIVector vectorWithX:0.0 Y:0.0 Z:imageWidth * kScreenColourCalculationInsetFraction W:imageHeight];
+    CIVector *bottomExtent = [CIVector vectorWithX:0.0 Y:imageHeight - (imageHeight * kScreenColourCalculationInsetFraction) Z:imageWidth W:imageHeight * kScreenColourCalculationInsetFraction];
+    CIVector *rightExtent = [CIVector vectorWithX:imageWidth - (imageWidth * kScreenColourCalculationInsetFraction) Y:0.0 Z:imageWidth * kScreenColourCalculationInsetFraction W:imageHeight];
     
     // Bottom
     [averageFilter setValue:bottomExtent forKey:@"inputExtent"];

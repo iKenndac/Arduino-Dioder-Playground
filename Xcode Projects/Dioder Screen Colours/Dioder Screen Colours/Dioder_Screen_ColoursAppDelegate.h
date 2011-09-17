@@ -35,6 +35,7 @@ typedef enum {
 
 -(void)portsChanged:(NSNotification *)aNotification;
 
+-(void)updateScreenColoursIfAppropriate;
 -(void)calculateColoursOfImage:(CGImageRef)imageRef;
 -(void)calculateColoursOfImageWithPickAPixel:(CGImageRef)imageRef;
 -(void)calculateColoursOfImageWithAverageRGB:(CGImageRef)imageRef;

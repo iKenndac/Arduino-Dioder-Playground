@@ -187,7 +187,20 @@ void screenDidUpdate(CGRectCount count, const CGRect *rectArray, void *userParam
 
 -(void)calculateColoursOfImageWithAverageHue:(CGImageRef)imageRef {
     
+    size_t imageWidth = CGImageGetWidth(imageRef);
+    size_t imageHeight = CGImageGetHeight(imageRef);
+
+    self.channel1Color = [NSColor whiteColor];
+    self.channel2Color = [NSColor whiteColor];
+    self.channel3Color = [NSColor whiteColor];
+    self.channel4Color = [NSColor whiteColor];
+
+    [self sendColours];
     
+    if (!self.avoidRenderingIfPossible) {
+        [self renderImage:imageRef];
+        [self setPreviewImageWithWidth:imageWidth height:imageHeight];
+    }
 }
 
 -(void)sendColours {

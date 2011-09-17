@@ -60,7 +60,8 @@
         [self.commsController pushColorsToChannel1:self.channel1Color
                                           channel2:self.channel2Color
                                           channel3:self.channel3Color
-                                          channel4:self.channel4Color];
+                                          channel4:self.channel4Color
+                                      withDuration:0.0];
         
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];

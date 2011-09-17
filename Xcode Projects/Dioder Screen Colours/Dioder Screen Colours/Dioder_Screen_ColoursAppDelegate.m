@@ -201,7 +201,8 @@ void screenDidUpdate(CGRectCount count, const CGRect *rectArray, void *userParam
     [self.commsController pushColorsToChannel1:self.channel1Color
                                       channel2:self.channel2Color
                                       channel3:self.channel3Color
-                                      channel4:self.channel4Color];
+                                      channel4:self.channel4Color
+                                  withDuration:kScreenshotFrequency * .9];
 }
 
 #pragma mark -

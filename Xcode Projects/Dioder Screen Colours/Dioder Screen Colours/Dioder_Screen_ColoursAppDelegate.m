@@ -202,7 +202,7 @@ void screenDidUpdate(CGRectCount count, const CGRect *rectArray, void *userParam
                                       channel2:self.channel2Color
                                       channel3:self.channel3Color
                                       channel4:self.channel4Color
-                                  withDuration:kScreenshotFrequency * .9];
+                                  withDuration:0.0 /*kScreenshotFrequency * .9*/];
 }
 
 #pragma mark -

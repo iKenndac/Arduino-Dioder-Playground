@@ -7,6 +7,9 @@ analog pins.
 To keep a bit of sanity, the 12-byte chunks need to be preceded by
 a two-byte header and tailed by a one-byte XOR checksum of the body.
 
+No assumptions are made about colours except that there are twelve
+channels starting at kChannel1FirstPin.
+
 NOTE: This project requires Arduino Mega.
 DOUBLE NOTE: This program implements the listening side of the messages
 sent by all of the included Xcode projects. Don't use the DumbListener, 
@@ -14,9 +17,7 @@ because it's dumb.
 
 */
 
-// It is assumed that the channels are connected RGBRGBRGBRGB from kChannel1RedPin.
-
-const int kChannel1RedPin = 2;
+const int kChannel1FirstPin = 2;
 
 // Protocol details (two header bytes, 12 value bytes, checksum)
 
@@ -34,7 +35,7 @@ byte receivedMessage[12];
 
 void setup() {
   // set pins 2 through 13 as outputs:
-  for (int thisPin = kChannel1RedPin; thisPin < (kChannel1RedPin + sizeof(receivedMessage)); thisPin++) { 
+  for (int thisPin = kChannel1FirstPin; thisPin < (kChannel1FirstPin + sizeof(receivedMessage)); thisPin++) { 
     pinMode(thisPin, OUTPUT); 
     analogWrite(thisPin, 255);
   }
@@ -87,7 +88,7 @@ void loop () {
     if (receivedChecksum == calculatedChecksum) {
       // Hooray! Push the values to the output pins.
       for (int i = 0; i < kProtocolBodyLength; i++) {
-        analogWrite(i + kChannel1RedPin, receivedMessage[i]);
+        analogWrite(i + kChannel1FirstPin, receivedMessage[i]);
       }
       
       Serial.print("OK");

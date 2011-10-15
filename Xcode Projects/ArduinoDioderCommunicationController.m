@@ -218,21 +218,21 @@ struct ArduinoDioderControlMessage {
     message.header[0] = kHeaderByte1;
     message.header[1] = kHeaderByte2;
     
-    message.colors[0] = (unsigned char)([rgbChannel1 redComponent] * 255);
-    message.colors[1] = (unsigned char)([rgbChannel1 greenComponent] * 255);
-    message.colors[2] = (unsigned char)([rgbChannel1 blueComponent] * 255);
+    message.colors[0] = (unsigned char)([rgbChannel1 greenComponent] * 255);
+    message.colors[1] = (unsigned char)([rgbChannel1 blueComponent] * 255);
+    message.colors[2] = (unsigned char)([rgbChannel1 redComponent] * 255);
     
-    message.colors[3] = (unsigned char)([rgbChannel2 redComponent] * 255);
-    message.colors[4] = (unsigned char)([rgbChannel2 greenComponent] * 255);
-    message.colors[5] = (unsigned char)([rgbChannel2 blueComponent] * 255);
+    message.colors[3] = (unsigned char)([rgbChannel2 greenComponent] * 255);
+    message.colors[4] = (unsigned char)([rgbChannel2 blueComponent] * 255);
+    message.colors[5] = (unsigned char)([rgbChannel2 redComponent] * 255);
     
-    message.colors[6] = (unsigned char)([rgbChannel3 redComponent] * 255);
-    message.colors[7] = (unsigned char)([rgbChannel3 greenComponent] * 255);
-    message.colors[8] = (unsigned char)([rgbChannel3 blueComponent] * 255);
+    message.colors[6] = (unsigned char)([rgbChannel3 greenComponent] * 255);
+    message.colors[7] = (unsigned char)([rgbChannel3 blueComponent] * 255);
+    message.colors[8] = (unsigned char)([rgbChannel3 redComponent] * 255);
     
-    message.colors[9] = (unsigned char)([rgbChannel4 redComponent] * 255);
-    message.colors[10] = (unsigned char)([rgbChannel4 greenComponent] * 255);
-    message.colors[11] = (unsigned char)([rgbChannel4 blueComponent] * 255);
+    message.colors[9] = (unsigned char)([rgbChannel4 greenComponent] * 255);
+    message.colors[10] = (unsigned char)([rgbChannel4 blueComponent] * 255);
+    message.colors[11] = (unsigned char)([rgbChannel4 redComponent] * 255);
     
     unsigned char checksum = 0;
     for (int i = 0; i < sizeof(message.colors); i++)

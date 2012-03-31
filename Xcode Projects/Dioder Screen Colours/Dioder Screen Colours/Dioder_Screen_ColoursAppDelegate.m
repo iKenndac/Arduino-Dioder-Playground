@@ -100,6 +100,7 @@ void screenDidUpdate(CGRectCount count, const CGRect *rectArray, void *userParam
         return;
     
     CGImageRef screenShot = CGWindowListCreateImage(CGRectInfinite, kCGWindowListOptionOnScreenOnly, kCGNullWindowID, kCGWindowImageDefault);
+    CGImageRef screenShot = CGDisplayCreateImage(CGMainDisplayID());
     [lastShotTaken release];
     lastShotTaken = [NSDate new];
     

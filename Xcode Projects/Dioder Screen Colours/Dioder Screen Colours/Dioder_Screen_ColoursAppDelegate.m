@@ -129,7 +129,7 @@ void screenDidUpdate(CGRectCount count, const CGRect *rectArray, void *userParam
 
 -(void)calculateColoursOfImageWithPickAPixel:(CGImageRef)imageRef {
     
-    NSBitmapImageRep *rep = [[[NSBitmapImageRep alloc] initWithCGImage:imageRef] autorelease];
+    NSBitmapImageRep *rep = [[NSBitmapImageRep alloc] initWithCGImage:imageRef];
     NSUInteger pixelInset = 128;
         
     self.channel1Color = [rep colorAtX:rep.pixelsWide / 2
@@ -146,6 +146,7 @@ void screenDidUpdate(CGRectCount count, const CGRect *rectArray, void *userParam
     
     [self sendColours];
     [self setPreviewImageWithBitmapImageRep:rep];
+    [rep release];
 }
 
 -(void)calculateColoursOfImageWithAverageRGB:(CGImageRef)imageRef {
@@ -157,9 +158,9 @@ void screenDidUpdate(CGRectCount count, const CGRect *rectArray, void *userParam
     CIFilter *averageFilter = [CIFilter filterWithName:@"CIAreaAverage"];
     [averageFilter setValue:ciImage forKey:@"inputImage"];
 
-    CIVector *topExtent = [CIVector vectorWithX:0.0 Y:0.0 Z:imageWidth W:imageHeight * kScreenColourCalculationInsetFraction];
+    CIVector *bottomExtent = [CIVector vectorWithX:0.0 Y:0.0 Z:imageWidth W:imageHeight * kScreenColourCalculationInsetFraction];
     CIVector *leftExtent = [CIVector vectorWithX:0.0 Y:0.0 Z:imageWidth * kScreenColourCalculationInsetFraction W:imageHeight];
-    CIVector *bottomExtent = [CIVector vectorWithX:0.0 Y:imageHeight - (imageHeight * kScreenColourCalculationInsetFraction) Z:imageWidth W:imageHeight * kScreenColourCalculationInsetFraction];
+    CIVector *topExtent = [CIVector vectorWithX:0.0 Y:imageHeight - (imageHeight * kScreenColourCalculationInsetFraction) Z:imageWidth W:imageHeight * kScreenColourCalculationInsetFraction];
     CIVector *rightExtent = [CIVector vectorWithX:imageWidth - (imageWidth * kScreenColourCalculationInsetFraction) Y:0.0 Z:imageWidth * kScreenColourCalculationInsetFraction W:imageHeight];
     
     // Bottom

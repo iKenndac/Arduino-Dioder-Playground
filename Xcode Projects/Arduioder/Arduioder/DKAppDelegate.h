@@ -21,6 +21,7 @@ typedef enum LightsMode : NSInteger {
 @interface DKAppDelegate : NSObject <NSApplicationDelegate>
 
 @property (assign) IBOutlet NSWindow *window;
+@property (weak) IBOutlet NSMenu *statusBarMenu;
 
 @property (readwrite, retain, nonatomic) ArduinoDioderCommunicationController *commsController;
 @property (readwrite, retain, nonatomic) NSArray *ports;
@@ -28,5 +29,6 @@ typedef enum LightsMode : NSInteger {
 @property (readwrite, retain, nonatomic) NSColor *fixedColor;
 
 -(void)portsChanged:(NSNotification *)aNotification;
+- (IBAction)showPreferencesWindow:(id)sender;
 
 @end

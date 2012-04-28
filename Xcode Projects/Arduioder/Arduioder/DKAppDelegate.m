@@ -12,9 +12,11 @@
 @interface DKAppDelegate ()
 -(void)updateScreenColors;
 @property (nonatomic, readwrite) BOOL screenUpdatesRunning;
+@property (nonatomic, readwrite, strong) NSStatusItem *statusItem;
 @end
 
 @implementation DKAppDelegate
+@synthesize statusBarMenu;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
@@ -50,14 +52,25 @@
 	
 	self.fixedColor = savedColor == nil ? [NSColor redColor] : savedColor;
 	
-	[self.window center];
-	[self.window orderFront:nil];
+	self.statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
+    
+    [self.statusItem setMenu:self.statusBarMenu];
+    [self.statusItem setHighlightMode:YES];
+	NSImage *image = [NSImage imageNamed:NSImageNameComputer];
+	[image setSize:NSMakeSize(16.0, 16.0)];
+	[self.statusItem setImage:image];
 	
+	[self.window center];
 }
 
 -(void)applicationWillTerminate:(NSNotification *)notification {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:DKSerialPortsDidChangeNotification object:nil];
     self.commsController = nil;
+}
+
+- (IBAction)showPreferencesWindow:(id)sender {
+	[NSApp activateIgnoringOtherApps:YES];
+	[self.window makeKeyAndOrderFront:sender];
 }
 
 #pragma mark - Notifications

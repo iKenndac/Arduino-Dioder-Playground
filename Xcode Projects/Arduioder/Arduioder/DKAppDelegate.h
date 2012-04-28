@@ -12,6 +12,7 @@
 static NSString * const kTurnOffLightsWithDisplayUserDefaultsKey = @"TurnOffLightsWithDisplay";
 static NSString * const kFixedColorUserDefaultsKey = @"FixedColor";
 static NSString * const kLightsModeUserDefaultsKey = @"LightsMode";
+static NSString * const kPortPathUserDefaultsKey = @"Port";
 
 typedef enum LightsMode : NSInteger {
 	kLightsModeMatchDisplay = 0,

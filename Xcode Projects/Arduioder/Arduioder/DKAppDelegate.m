@@ -45,7 +45,20 @@
 											   context:nil];
 	
 	self.commsController = [[ArduinoDioderCommunicationController alloc] init];
+	[self.commsController addObserver:self forKeyPath:@"port" options:0 context:nil];
+	
 	[self portsChanged:nil];
+	
+	NSString *portPath = [[NSUserDefaults standardUserDefaults] valueForKey:kPortPathUserDefaultsKey];
+	
+	if (portPath.length > 0) {
+		for (DKSerialPort *port in [DKSerialPort availableSerialPorts]) {
+			if ([port.serialPortPath isEqualToString:portPath]) {
+				self.commsController.port = port;
+				break;
+			}
+		}
+	}
 	
 	NSData *data = [[NSUserDefaults standardUserDefaults] dataForKey:kFixedColorUserDefaultsKey];
 	NSColor *savedColor = data == nil ? nil : [NSUnarchiver unarchiveObjectWithData:data];
@@ -65,6 +78,7 @@
 
 -(void)applicationWillTerminate:(NSNotification *)notification {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:DKSerialPortsDidChangeNotification object:nil];
+	[self.commsController removeObserver:self forKeyPath:@"port"];
     self.commsController = nil;
 }
 
@@ -115,6 +129,12 @@
 											  channel4:self.fixedColor
 										  withDuration:0.0];
 		}
+		
+	} else if ([keyPath isEqualToString:@"port"]) {
+		
+		DKSerialPort *port = self.commsController.port;
+		if (port.serialPortPath.length > 0)
+			[[NSUserDefaults standardUserDefaults] setValue:port.serialPortPath forKey:kPortPathUserDefaultsKey];
 		
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];

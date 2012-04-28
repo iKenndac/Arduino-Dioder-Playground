@@ -108,6 +108,12 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if ([keyPath isEqualToString:@"fixedColor"]) {
+		
+		if (self.fixedColor == nil) return;
+		
+		NSData *data = [NSArchiver archivedDataWithRootObject:self.fixedColor];
+		[[NSUserDefaults standardUserDefaults] setValue:data forKey:kFixedColorUserDefaultsKey];
+		
         if ([[NSUserDefaults standardUserDefaults] integerForKey:kLightsModeUserDefaultsKey] == kLightsModeStaticColor)
 			[self.commsController pushColorsToChannel1:self.fixedColor
 											  channel2:self.fixedColor

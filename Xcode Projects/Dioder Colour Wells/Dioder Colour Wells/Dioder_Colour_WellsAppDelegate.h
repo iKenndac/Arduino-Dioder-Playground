@@ -9,9 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "ArduinoDioderCommunicationController.h"
 
-@interface Dioder_Colour_WellsAppDelegate : NSObject <NSApplicationDelegate> {
-    NSWindow *window;
-}
+@interface Dioder_Colour_WellsAppDelegate : NSObject <NSApplicationDelegate>
 
 @property (assign) IBOutlet NSWindow *window;
 

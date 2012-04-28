@@ -16,7 +16,6 @@ typedef enum {
 } ScreenSamplingMode;
 
 @interface Dioder_Screen_ColoursAppDelegate : NSObject <NSApplicationDelegate> {
-    NSWindow *window;
 }
 
 @property (assign) IBOutlet NSWindow *window;

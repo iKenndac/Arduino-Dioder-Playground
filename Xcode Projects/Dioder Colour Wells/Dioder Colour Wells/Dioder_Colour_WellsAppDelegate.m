@@ -28,7 +28,7 @@
     
     [self portsChanged:nil];
     
-    self.commsController = [[ArduinoDioderCommunicationController new] autorelease];
+    self.commsController = [ArduinoDioderCommunicationController new];
     
     self.channel1Color = [NSColor blackColor];
     self.channel2Color = [NSColor blackColor];

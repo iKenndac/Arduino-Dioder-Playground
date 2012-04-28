@@ -40,7 +40,7 @@ static NSDate *lastShotTaken;
                                                  name:DKSerialPortsDidChangeNotification
                                                object:nil];
     
-    self.commsController = [[[ArduinoDioderCommunicationController alloc] init] autorelease];
+    self.commsController = [[ArduinoDioderCommunicationController alloc] init];
     
     [self portsChanged:nil];
     lastShotTaken = nil;
@@ -59,7 +59,7 @@ static NSDate *lastShotTaken;
 -(void)applicationWillTerminate:(NSNotification *)notification {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:DKSerialPortsDidChangeNotification object:nil];
     self.commsController = nil;
-    CGUnregisterScreenRefreshCallback(screenDidUpdate, self);
+    CGUnregisterScreenRefreshCallback(screenDidUpdate, (__bridge void *)self);
 }
 
 #pragma mark -
@@ -67,7 +67,9 @@ static NSDate *lastShotTaken;
 
 void screenDidUpdate(CGRectCount count, const CGRect *rectArray, void *userParameter) {
     
-    Dioder_Screen_ColoursAppDelegate *self = userParameter;
+    lastScreenUpdateReceived = [NSDate new];
+    
+    Dioder_Screen_ColoursAppDelegate *self = (__bridge Dioder_Screen_ColoursAppDelegate *)userParameter;
     
     // Always assume main screen
     NSScreen *mainScreen = [[NSScreen screens] objectAtIndex:0];
@@ -147,7 +149,6 @@ void screenDidUpdate(CGRectCount count, const CGRect *rectArray, void *userParam
     
     [self sendColours];
     [self setPreviewImageWithBitmapImageRep:rep];
-    [rep release];
 }
 
 -(void)calculateColoursOfImageWithAverageRGB:(CGImageRef)imageRef {
@@ -183,7 +184,7 @@ void screenDidUpdate(CGRectCount count, const CGRect *rectArray, void *userParam
     [self sendColours];
     
     if (!self.avoidRenderingIfPossible)
-        [self setPreviewImageWithBitmapImageRep:[[[NSBitmapImageRep alloc] initWithCIImage:ciImage] autorelease]];
+        [self setPreviewImageWithBitmapImageRep:[[NSBitmapImageRep alloc] initWithCIImage:ciImage]];
 }
 
 -(void)calculateColoursOfImageWithAverageHue:(CGImageRef)imageRef {
@@ -196,7 +197,7 @@ void screenDidUpdate(CGRectCount count, const CGRect *rectArray, void *userParam
     [self sendColours];
     
     if (!self.avoidRenderingIfPossible)
-        [self setPreviewImageWithBitmapImageRep:[[[NSBitmapImageRep alloc] initWithCGImage:imageRef] autorelease]];
+        [self setPreviewImageWithBitmapImageRep:[[NSBitmapImageRep alloc] initWithCIImage:ciImage]];
 }
 
 -(void)sendColours {
@@ -211,7 +212,7 @@ void screenDidUpdate(CGRectCount count, const CGRect *rectArray, void *userParam
 #pragma mark Image Rendering
 
 -(NSColor *)colorFromFirstPixelOfCIImage:(CIImage *)ciImage {
-    NSBitmapImageRep *rep = [[[NSBitmapImageRep alloc] initWithCIImage:ciImage] autorelease];
+    NSBitmapImageRep *rep = [[NSBitmapImageRep alloc] initWithCIImage:ciImage];
     return [rep colorAtX:0 y:0];
 }
 
@@ -220,7 +221,6 @@ void screenDidUpdate(CGRectCount count, const CGRect *rectArray, void *userParam
     NSImage *previewImage = [[NSImage alloc] initWithSize:NSMakeSize([rep pixelsWide], [rep pixelsHigh])];
     [previewImage addRepresentation:rep];
     [self setImage:previewImage];
-    [previewImage release];
 }
 
 @end

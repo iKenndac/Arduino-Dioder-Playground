@@ -24,4 +24,6 @@
 @property (readonly, retain) NSColor *currentChannel3Color;
 @property (readonly, retain) NSColor *currentChannel4Color;
 
+@property (readwrite) BOOL lightsEnabled;
+
 @end
